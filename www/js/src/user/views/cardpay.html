@@ -1,0 +1,38 @@
+<ion-view title="我的就医卡">
+
+    <ion-content padding="false" class="has-header">
+    	  
+    
+        <ion-refresher
+            pulling-text="下拉刷新..."
+            on-refresh="refresh()">
+        </ion-refresher>
+            <h4><b class="padding">{{card.hosOrgName}}</b></h4>
+            <p class="has-header has-footer padding">就医卡号：{{card.cardno}}</p> 	
+        <a class="row border margin href border-light" ng-repeat="patient in items" style="width: auto;">
+
+            <div class="col-20 col-center center">
+                <p>{{patient.optime | date:'MM-dd'}}</p>
+                <b>{{patient.optime | date:'HH:mm'}}</b>
+            </div>
+            <div class="col-60 col-center border-left padding-left border-light">
+             
+                <p>{{patient.oper}}</p>
+                <span>{{patient.cardval}}</span>
+            </div>
+            
+        </a>
+
+  </ion-item>
+        <div class="nomore padding" ng-if="!hasmore">
+            没有更多
+        </div>
+
+        <ion-infinite-scroll
+            ng-if="hasmore"
+            on-infinite="loadMore()"
+            distance="5%"
+            >
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
