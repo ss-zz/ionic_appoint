@@ -191,6 +191,29 @@ angular.module('app.routes', [])
 		templateUrl: 'js/src/user/views/patient_edit.html',
 		controller: 'PatientEditCtrl'
 	})
+	//就医卡列表
+	.state('mymedicalcardlist', {
+		url: '/mymedicalcardlist',
+		params: {targetState: "cardpay",otherParams:null},
+		cache: false,
+		templateUrl: 'js/src/user/views/mymedicalcard_list.html',
+		controller: 'MyCardCtrl'
+	})
+	//就医卡消费
+	.state('cardpay', {
+		url: '/cardpay',
+		params: {card: null},
+		cache:false,
+		templateUrl: 'js/src/user/views/cardpay.html',
+		controller: 'CardpayCtrl'
+	})
+	//添加就医卡
+	.state('addcard', {
+		url: '/addcard',
+		params: {hos: null},
+		templateUrl: 'js/src/user/views/add_card.html',
+		controller: 'addcardctrl'
+	})
 	//关于我们
 	.state('aboutUs', {
 		url: '/aboutUs',
