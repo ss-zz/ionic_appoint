@@ -1,0 +1,55 @@
+<ion-view title="资讯" hide-back-button="true">
+    <ion-content padding="false" class=" manual-remove-top-padding has-header">
+
+        <ion-refresher
+            pulling-text="下拉刷新..."
+            on-refresh="refresh()">
+        </ion-refresher>
+        
+        <div class="row bg-spe">
+            <a ng-click="refresh('Default');" 
+                class="col center href"
+                ng-class="{'color-main': current == 'Default'}"
+                >推荐</a>
+            <a ng-click="refresh('Food');" 
+                class="col center href"
+                ng-class="{'color-main': current == 'Food'}"
+                >饮食</a>
+            <a ng-click="refresh('Psy');"
+                class="col center href"
+                ng-class="{'color-main': current == 'Psy'}"
+                >心理</a>
+            <a ng-click="refresh('Ladybaby');"
+                class="col center href"
+                ng-class="{'color-main': current == 'Ladybaby'}"
+                >妇婴</a>
+        </div>
+
+        <ion-list>
+            <ion-item ng-repeat="article in articles" class="item-thumbnail-left news" ui-sref="newsDetail({newsId: article.articleId})">
+                <img ng-if="article.articlePic" ng-src="{{imgUrlBase}}/{{article.articlePic}}">
+                <div>
+                    <span class="news-title" 
+                        ng-class="{'news-title-width': current == 'Default', 'news-title-leftwidth': !article.articlePic}">
+                        {{article.articleTitle}}</span>
+                    <span class="news-date i color-light"
+                        ng-if="current != 'Default'">
+                        {{article.releaseDate |date:'yyyy-MM-dd'}}</span>
+                </div>
+                <p class="text2 news-summary padding-right" ng-class="{'news-title-leftwidth': !article.articlePic}">{{article.articleSummary}}</p>
+            </ion-item>
+        </ion-list>
+
+        <ion-item ng-if="!hasmore" class="nomore">
+            没有更多
+        </ion-item>
+
+        <ion-infinite-scroll
+            ng-if="hasmore"
+            on-infinite="loadMore()"
+            distance="5%"
+            >
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>

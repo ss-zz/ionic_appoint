@@ -1,0 +1,92 @@
+<ion-view title="百姓医院" hide-back-button="true">
+
+	<ion-nav-buttons side="left">
+		<div class="buttons">
+			<a class="button" ng-click="viewLogin()">
+				<i class="icon ion-navicon-round" ></i>
+			</a>
+		</div>
+	</ion-nav-buttons>
+
+	<ion-nav-buttons side="right">
+		<div class="buttons">
+			<a class="button" ui-sref="messagelist">
+				<i class="icon ion-email" ></i>
+			</a>
+		</div>
+	</ion-nav-buttons>
+
+	<ion-content padding="false" class="has-header">
+
+		<ion-refresher
+			pulling-text="下拉刷新..."
+			on-refresh="refresh()">
+		</ion-refresher>
+
+		<!--
+		<p class="padding">新消息：您有一个“检验报告”已出，请速取</p>
+		-->
+
+		<form class="list padding-horizontal padding-top">
+			<a href="#/searchHosAndDoc">
+			<label class="item item-input">
+				<input type="search" placeholder="医院/医生">
+				<i class="icon ion-search placeholder-icon padding"></i>
+			</label>
+			</a>
+		</form>
+
+		<img style="width: 100%;" src="img/ad.png">
+
+		<div class="row">
+			<a class="col-40 col-center row-center border-right center" ui-sref="appointQuick">
+				<img src="img/homeyuyue.png" style="width: 40%">
+				<h4><b>预约挂号</b></h4>
+				<h5>当地唯一官方指定专业挂号平台</h5>
+			</a>
+			<div class="col-60">
+				 <a class="row border-bottom" ui-sref="hosSearch">
+					<div class="col-60 col-offset-10">
+						<h4><b>找医院</b></h4>
+						<h5>寻找就诊医院</h5>
+					</div>
+					<div class="col-40">
+						<img src="img/shouye_03.png" style="width: 60%">
+					</div>
+				</a>
+				<a class="row" style="margin-top: 20px;"
+				 ui-sref="doctorSearch">
+					<div class="col-60 col-offset-10">
+						<h4><b>找大夫</b></h4>
+						<h5>寻找专家名医</h5>
+					</div>
+					 <div class="col-40">
+						<img src="img/shouye_04.png" style="width: 60%">
+					</div>
+				</a>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<a ui-sref="drugPriceSearch" class="col button">药品价格查询</a>
+			<a ui-sref="servItemPriceSearch" class="col button">服务项目价格查询</a>
+		</div>
+
+		<div class="row row-center" ui-sref="news">
+			<div class="col-80"><h4>健康资讯</h4></div>
+			<a class="col-20">&gt;&gt;更多</a>
+		</div>
+
+		<ion-list>
+			<ion-item ng-repeat="article in articles" class="item-thumbnail-left news" ui-sref="newsDetail({newsId: article.articleId})">
+				<img ng-if="article.articlePic" ng-src="{{imgUrlBase}}/{{article.articlePic}}">
+				<div>
+					<span class="news-title news-title-width" ng-class="{'news-title-leftwidth': !article.articlePic}">{{article.articleTitle}}</span>
+				</div>
+				<p class="text2 news-summary padding-right" ng-class="{'news-title-leftwidth': !article.articlePic}">{{article.articleSummary}}</p>
+			</ion-item>
+		</ion-list>
+
+	</ion-content>
+</ion-view>

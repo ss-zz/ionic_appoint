@@ -1,0 +1,30 @@
+<ion-view title="找医院/医生">
+
+	<ion-content padding="true" class="has-header">
+
+		<form class="list padding-horizontal">
+			<label class="item item-input">
+				<input type="search" placeholder="医院/医生" ng-change="search();" ng-model="searchParams.searchStr">
+				<i class="icon ion-search placeholder-icon padding"></i>
+			</label>
+		</form>
+
+		<div class="list">
+			<a ui-sref="hospital({hos: hospital})" class="item" ng-repeat="hospital in hospitals">
+				<h3>{{hospital.hosOrgName}}</h3>
+				<span>
+				 {{hospital.hosLevel}}
+				 {{hospital.hosType}}</span>
+			</a>
+		</div>
+
+		<div class="list">
+			<a href="#/doctor/{{doctor.id}}" class="item" ng-repeat="doctor in doctors">
+				<h3>{{doctor.name}}</h3>
+				<span>{{doctor.hosOrgName}} {{doctor.deptName}} {{doctor.profeTitleDn}}</span>
+			</a>
+		</div>
+
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-view title="价格查询">
+
+	<ion-content padding="false" class="has-header">
+
+		<div class="row border-weight border-bottom"
+			 ui-sref="hosSearch({targetState: 'hosPriceSearch'})">
+			<div class="col-80">
+				<h4><b>{{hos.hosOrgName}}</b></h4>
+			</div>
+			<div class="col-20 col-center">
+				<a>切换&gt;</a>
+			</div>
+		</div>
+
+		<form class="padding list padding-horizontal">
+			<label class="item item-input"
+				ui-sref="drugPriceSearch({'hos': hos})">
+				<input type="search" placeholder="药品">
+				<i class="icon ion-search placeholder-icon padding"></i>
+			</label>
+
+			<label class="item item-input margin-top"
+				ui-sref="servItemPriceSearch({'hos': hos})">
+				<input type="search" placeholder="服务项目">
+				<i class="icon ion-search placeholder-icon padding"></i>
+			</label>
+		</form>
+
+	</ion-content>
+</ion-view>

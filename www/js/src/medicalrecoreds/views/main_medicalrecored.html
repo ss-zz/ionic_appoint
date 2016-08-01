@@ -1,0 +1,100 @@
+<ion-view title="就医记录" hide-back-button="true">
+	<ion-content padding="false" class="has-header">
+
+	<ion-refresher
+		pulling-text="下拉刷新..."
+		on-refresh="doRefresh()">
+	</ion-refresher>
+
+	<div style="background: url(img/userbackground.jpg) center;">
+		<div class="row center" >
+			<div class="col center">
+				<img ng-if="!imageBase64"
+					src="img/user_head.png"
+					style="width: 20%;">
+				<img class ="border-circle"
+					ng-if="imageBase64"
+					ng-src="{{imageBase64}}"
+					style="width: 20%;">
+			</div>
+		</div>
+
+		<div class="row center color-white">
+			<div class="col col-center">
+				{{patient.name}}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="color-white"
+					ui-sref="patientList({targetState: 'medicalrecored'})">切换就诊者&gt;</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row border-bottom border-weight">
+		<a class="col center border-right border-color-main"
+			ui-sref="appointList">
+			<img src="img/user_01.png" style="height: 40px;">
+			<br/>
+			预约记录
+		</a>
+		<a class="col center border-right border-color-main"
+			ui-sref="medicalrecoredPre({idNo: patient.idNo})">
+			<img src="img/rd_02.png" style="height: 40px;">
+			<br/>
+			门诊处方
+		</a>
+		<a class="col center border-right border-color-main"
+			ui-sref="medicalrecoredFee({idNo: patient.idNo})">
+			<img src="img/rd_04.png" style="height: 40px;">
+			<br/>
+			医疗费用
+		</a>
+		<a class="col center"
+			ui-sref="medicalrecoredReport({idNo: patient.idNo})">
+			<img src="img/rd_03.png" style="height: 40px;">
+			<br/>
+			报告查询
+		</a>
+	</div>
+
+	<div class="padding border-bottom">
+		最近的就医记录
+	</div>
+
+	<a
+		class="row padding border-bottom row-center"
+		ng-repeat="record in records"
+		ui-sref="medicalrecoredDetail({id: record.id})"
+		>
+		<div class="col col-75 border-right">
+			<span><b>{{record.diag}}</b></span>
+			<br/>
+			<span>
+				{{record.hospitalName}}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				{{record.departmentName}}</span>
+
+			<br/>
+			<span ng-if="record.ttPCount > 0" class="color-main">
+				处方单{{record.ttPCount}}
+			</span>
+			<span ng-if="record.ckReportCount > 0" class="color-main">
+				检查单{{record.ckReportCount}}
+			</span>
+			<span ng-if="record.ttTestCount > 0" class="color-main">
+				检验单{{record.ttTestCount}}
+			</span>
+		</div>
+		<div class="col col-25 center">
+			{{record.diagDate | date:'MM/dd'}}
+			<br/>
+			{{record.diagDate | date:'yyyy'}}
+		</div>
+	</a>
+
+	<ion-item ng-if="!hasmore" class="nomore">
+		没有更多
+	</ion-item>
+
+	</ion-content>
+</ion-view>

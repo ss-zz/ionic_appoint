@@ -1,0 +1,56 @@
+<ion-view title="就医评价">
+
+	<ion-content padding="true" class="has-header">
+
+		<div class="row row-center">
+			总体评价：
+			<evaluate-select ng-model="params.evaluateAll" disable="hasEvaluate"/>
+		</div>
+		<div class="row row-center">
+			医院环境：
+			<evaluate-select ng-model="params.evaluateHosenv" disable="hasEvaluate"/>
+		</div>
+		<div class="row row-center">
+			科室环境：
+			<evaluate-select ng-model="params.evaluateDeptenv" disable="hasEvaluate"/>
+		</div>
+		<div class="row row-center">
+			医生服务：
+			<evaluate-select ng-model="params.evaluateDoctorserv" disable="hasEvaluate"/>
+		</div>
+		<div class="row row-center">
+			APP应用：
+			<evaluate-select ng-model="params.evaluateApp" disable="hasEvaluate"/>
+		</div>
+
+		<textarea
+			ng-if="!hasEvaluate"
+			class="textarea border-light"
+			ng-model="params.evaluate"
+			placeholder="评价意见"
+			style="height: 300px;"
+		></textarea>
+		<div ng-if="hasEvaluate" class="row">
+			<b>评价结果</b>&nbsp;{{params.createTime | date: 'yyyy/MM/dd HH:mm'}}
+		</div>
+		<div ng-if="hasEvaluate" class="border-top border-light padding">
+			{{params.evaluate}}
+		</div>
+
+		<button
+			ng-if="!hasEvaluate"
+			class=" button button-energized button-block"
+			ng-click="save();">
+			<b>提交评价</b>
+		</button>
+		<button
+			ng-if="hasEvaluate"
+			class=" button button-stable button-block"
+			>
+			<b>已评价</b>
+		</button>
+
+		<div class="row"></div>
+
+	</ion-content>
+</ion-view>

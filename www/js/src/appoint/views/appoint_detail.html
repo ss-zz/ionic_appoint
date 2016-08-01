@@ -1,0 +1,48 @@
+<ion-view title="预约单">
+
+	<ion-content padding="false" class="has-header">
+
+		<div class="center">
+			<h4>恭喜,预约成功！取号密码</h4>
+			<h3><b>{{appoint.appointmentNo}}</b></h3>
+		</div>
+
+		<div class="border-top border-bottom border-light padding">
+			订单信息
+			<span class="float-right font-i" ng-switch on="appoint.state">
+				<span ng-switch-when="1"><i>有效</i></span>
+				<span ng-switch-when="0"><i>已完成</i></span>
+				<span ng-switch-when="9"><i>已退号</i></span>
+			</span>
+		</div>
+		<div class="padding border-bottom border-light bg-grey">
+			就诊医院：{{appoint.hosOrgName}}
+			<br/>
+			就诊科室：{{appoint.deptName}}
+			<br/>
+			就诊时间：
+			<span class="red_font">
+				{{appoint.appointDate | date: 'yyyy-MM-dd'}} {{appoint.week}}
+			</span>
+			<br/>
+			门诊类型：{{appoint.clincName}}
+			<br/>
+			<span ng-if="appoint.expName">
+				专家医生：{{appoint.expName}}
+				<br/>
+			</span>
+			挂号费用：<span class="red_font">￥{{appoint.reFee}}元</span>
+			<br/><br/>
+			姓名：{{appoint.patientname}}
+			<br/>
+			性别：{{appoint.gender}}
+			<br/>
+			手机号码：{{appoint.phone}}
+			<br/>
+			身份证号：{{appoint.idNo}}
+			<br/>
+			下单时间：{{appoint.createtime | date: 'yyyy/MM/dd HH:mm'}}
+		</div>
+
+	</ion-content>
+</ion-view>

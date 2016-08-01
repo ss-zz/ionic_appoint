@@ -1,0 +1,45 @@
+<ion-view title="科室信息">
+	<ion-content padding="false" hide-back-button="true" class="has-header">
+
+		<ion-refresher
+			pulling-text="下拉刷新..."
+			on-refresh="refresh()">
+		</ion-refresher>
+
+		<div class="padding border-bottom border-weight">
+			<h4><b>{{hos.hosOrgName}}</b></h4>
+		</div>
+
+		<div class="padding border-light border-bottom">
+			{{dept.deptName}}
+		</div>
+		<div class="padding border-weight border-bottom">
+			{{dept.deptDesc}}
+		</div>
+		<div class="padding border-light border-bottom">
+			推荐医生
+		</div>
+
+		<div class="padding border-bottom border-light"
+			ng-repeat="doctor in doctors"
+			ui-sref="doctorDetail({doctor: doctor})"
+			>
+			<h4><b>{{doctor.name}}</b></h4>
+			<span>{{doctor.hosOrgName}}</span>
+			<span>{{doctor.deptName}}</span>
+			<span>{{doctor.profeTitleDn}}</span>
+		</div>
+
+		<div class="nomore padding" ng-if="!hasmore">
+			没有更多
+		</div>
+
+		<ion-infinite-scroll
+			ng-if="hasmore"
+			on-infinite="loadMore()"
+			distance="5%"
+			>
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

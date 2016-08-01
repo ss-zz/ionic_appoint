@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title></title>
+
+	<script src="lib/ionic/js/ionic.bundle.js"></script>
+
+	<!-- cordova script (this will be a 404 during development) -->
+	<script src="lib/ngCordova/dist/ng-cordova.js"></script>
+	<script src="cordova.js"></script>
+
+	<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+	<link href="css/ionic.app.css" rel="stylesheet">
+	-->
+
+
+	<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+
+	<style type="text/css">
+		.platform-ios .manual-ios-statusbar-padding{
+		padding-top:20px;
+		}
+		.manual-remove-top-padding{
+		padding-top:0px;
+		}
+		.manual-remove-top-padding .scroll{
+		padding-top:0px !important;
+		}
+		ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+		margin-left:-10px;
+		margin-right:-10px;
+		}
+		ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+		border-radius:0px;
+		border-left:0px;
+		border-right: 0px;
+		}
+	</style>
+
+	<script src="js/build/main.js"></script>
+
+	<!-- Only required for Tab projects w/ pages in multiple tabs
+	<script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+	-->
+
+	</head>
+	<body ng-app="app" animation="slide-left-right-ios7">
+
+	<ion-nav-bar
+		align-title="center"
+		ng-controller="NavBarCtrl"
+		class="bar-balanced"
+		animation="nav-title-slide-ios7"
+		back-button-type="button-icon"
+		back-button-icon="ion-arrow-left-c">
+
+		<ion-nav-back-button class="button-clear">
+		<i class="ion-arrow-left-c"></i>{{getPreviousTitle() || '返回'}}
+		</ion-nav-back-button>
+
+	</ion-nav-bar>
+
+	<!--
+	<ion-nav-view animation="slide-left-right"></ion-nav-view>
+	-->
+
+	<ion-view>
+		<ion-content padding="false">
+			<ion-nav-view style="bottom: 50px;"></ion-nav-view>
+			<div ng-controller="TabsCtrl" class="tabs tabs-stable tabs-icon-top">
+			<a class="tab-item" ng-click="selectTabWithIndex(1, 'index')">
+				<i class="icon ion-home"></i>
+				首页
+			</a>
+			<a class="tab-item" ng-click="selectTabWithIndex(2, 'hospital')">
+				<i class="icon ion-android-list"></i>
+				医院
+			</a>
+			<a class="tab-item" ng-click="selectTabWithIndex(3, 'medicalrecored')">
+				<i class="icon ion-ios-cloud"></i>
+				记录
+			</a>
+			<a class="tab-item" ng-click="selectTabWithIndex(4, 'news')">
+				<i class="icon ion-ios-list-outline"></i>
+				资讯
+			</a>
+			<a class="tab-item" ng-click="selectTabWithIndex(5, 'my')">
+				<i class="icon ion-android-contact"></i>
+				我的
+			</a>
+
+			</div>
+		</ion-content>
+	</ion-view>
+
+	</body>
+</html>

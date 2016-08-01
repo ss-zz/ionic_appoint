@@ -1,0 +1,28 @@
+<ion-view title="医院导航">
+	<ion-content padding="false" hide-back-button="true" class="has-header">
+
+		<div class="padding border-bottom border-weight">
+			<h4><b>{{hos.hosOrgName}}</b></h4>
+		</div>
+
+		<div class="row padding">
+			<h5><b>
+				<i class="icon ion-ios-location-outline"></i>
+				地址：{{hos.hosAddr}}
+			</b></h5>
+		</div>
+		<div class="row padding">
+			<h5>
+				<i class="icon ion-ios-telephone-outline"></i>
+				电话：{{hos.hosTel}}
+			</h5>
+		</div>
+
+		<div class="row padding">
+			<button class="button button-block button-stable">
+				开启地图导航
+			</button>
+		</div>
+
+	</ion-content>
+</ion-view>

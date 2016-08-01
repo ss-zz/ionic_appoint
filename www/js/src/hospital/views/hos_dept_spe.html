@@ -1,0 +1,18 @@
+<ion-view title="特色科室">
+	<ion-content padding="false" hide-back-button="true" class="has-header">
+
+		<div class="padding border-bottom border-weight">
+			<h4><b>{{hos.hosOrgName}}</b></h4>
+		</div>
+
+		<div class="padding border-light border-bottom"
+			ng-repeat="dept in depts"
+			ui-sref="hosDeptDetail({'dept': dept, 'hos': hos})">
+			<p>{{dept.deptName}}</p>
+			<p class="text2">
+				{{dept.deptDesc}}
+			</p>
+		</div>
+
+	</ion-content>
+</ion-view>

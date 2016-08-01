@@ -1,0 +1,52 @@
+<ion-view title="我的预约">
+
+	<ion-content padding="false" class="has-header">
+
+		<div ng-repeat="appoint in list">
+			<div class="row border-bottom border-top border-light padding">
+				<span class="col-50">订单信息</span>
+				<span class="col-50 align-right">
+					{{appoint.createtime | date: 'yyyy/MM/dd HH:mm' }}
+				</span>
+			</div>
+			<div class="padding">
+				<span>{{appoint.hosOrgName}}</span>
+				<span>{{appoint.deptName}}</span>
+				<br/>
+				<span><b>{{appoint.appointDate | date: 'yyyy-MM-dd'}}</b></span>
+				<span>{{appoint.expName}}</span>
+				<br/>
+				<span><b>{{appoint.patientname}}</b></span>
+				<span>{{appoint.gender}}</span>
+				<span>{{appoint.phone}}</span>
+				<span class="float-right font-i" ng-switch on="appoint.state">
+					<span ng-switch-when="1"><i>有效</i></span>
+					<span ng-switch-when="0"><i>已完成</i></span>
+					<span ng-switch-when="9"><i>已退号</i></span>
+				</span>
+			</div>
+			<div class="row">
+				<button class="button button-balanced button-block margin"
+					ui-sref="appointDetail({appointId: appoint.id})"
+					ng-click="goDatil(appoint)">
+					订单详情
+				</button>
+				<button class="button button-assertive button-block margin"
+					ng-if="appoint.state == 1"
+					ng-click="cancelAppoint(appoint)">
+					退号
+				</button>
+			</div>
+		</div>
+		<div class="nomore" ng-if="!hasmore">
+			没有更多
+		</div>
+		<ion-infinite-scroll
+			ng-if="hasmore"
+			on-infinite="loadMore()"
+			distance="5%"
+			>
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

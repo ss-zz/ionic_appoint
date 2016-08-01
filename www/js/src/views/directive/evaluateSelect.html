@@ -1,0 +1,6 @@
+<div class="evaluate-select">
+	<div class="evaluate-select-item" ng-repeat="r in range">
+		<img ng-if="r <= ngModel" src="img/star_s.png" ng-click="click(r)">
+		<img ng-if="r > ngModel" src="img/star.png" ng-click="click(r)">
+	</div>
+</div>

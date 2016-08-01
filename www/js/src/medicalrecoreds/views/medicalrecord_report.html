@@ -1,0 +1,139 @@
+<ion-view title="报告明细">
+	<ion-content padding="false" class="has-header">
+
+		<ion-refresher
+		    pulling-text="下拉刷新..."
+		    on-refresh="refresh()">
+		</ion-refresher>
+
+		<div class="row bg-spe">
+			<a ng-click="current = 'Test'" 
+				class="col center border-right border-color-white href"
+				ng-class="{'color-main': current == 'Test'}"
+				>检验报告</a>
+			<a ng-click="current = 'Check'" 
+				class="col center href"
+				ng-class="{'color-main': current == 'Check'}"
+				>检查报告</a>
+		</div>
+
+		<div ng-show="current == 'Test'">
+			<div ng-repeat="testItem in tests" class="border-bottom" ng-click="testItem.SHOWORHIDE = !testItem.SHOWORHIDE">
+
+				<div class="row">
+					<div class="col-60 align-left">
+						<b>{{testItem.outpatientRecord.diag}}</b>
+					</div>
+					<div class="col-40 align-right">
+						{{testItem.outpatientRecord.diagDate | date: 'yyyy-MM-dd'}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-60 align-left">
+						{{testItem.outpatientRecord.hospitalName}}
+						&nbsp;&nbsp;
+						{{testItem.outpatientRecord.departmentName}}
+					</div>
+					<div class="col-40 align-right">
+						<div ng-show="testItem.SHOWORHIDE">
+							收起<i class="ion-arrow-up-b"></i>
+						</div>
+						<div ng-show="!testItem.SHOWORHIDE">
+							展开<i class="ion-arrow-down-b"></i>
+						</div>
+					</div>
+				</div>
+
+				<div ng-show="testItem.SHOWORHIDE">
+					<div ng-repeat="test in testItem.tests" class="margin">
+						<div class="row padding">
+							<div class="col-50 align-left">
+								<b>{{test.testSpecies}}</b>
+							</div>
+							<div class="col-50 align-right">
+								单号：{{test.testReportNo}}
+							</div>
+						</div>
+						<table>
+							<tr class="border-top border-bottom" style="border-bottom-width: 1px;">
+								<td>项目名称</td>
+								<td>测试结果</td>
+								<td>单位</td>
+								<td>参考值</td>
+							</tr>
+							<tr ng-repeat="testDtail in test.testReport.testReportDetails">
+								<td>{{testDtail.itemName}}</td>
+								<td>{{testDtail.testValue}}</td>
+								<td>{{testDtail.testMeUnit}}</td>
+								<td>{{testDtail.referenceLimit}}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<div ng-show="current == 'Check'">
+			<div ng-repeat="checkItem in checks" ng-click="checkItem.SHOWORHIDE = !checkItem.SHOWORHIDE" class="border-bottom">
+
+				<div class="row">
+					<div class="col-60 align-left">
+						<b>{{checkItem.outpatientRecord.diag}}</b>
+					</div>
+					<div class="col-40 align-right">
+						{{checkItem.outpatientRecord.diagDate | date: 'yyyy-MM-dd'}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-60 align-left">
+						{{checkItem.outpatientRecord.hospitalName}}
+						&nbsp;&nbsp;
+						{{checkItem.outpatientRecord.departmentName}}
+					</div>
+					<div class="col-40 align-right">
+						<div ng-show="checkItem.SHOWORHIDE">
+							收起<i class="ion-arrow-up-b"></i>
+						</div>
+						<div ng-show="!checkItem.SHOWORHIDE">
+							展开<i class="ion-arrow-down-b"></i>
+						</div>
+					</div>
+				</div>
+
+				<div ng-show="checkItem.SHOWORHIDE">
+					<div ng-repeat="check in checkItem.checks" class="margin">
+						<div class="padding border-bottom">
+							{{check.checkReport.reportDescription}}
+							<br/>
+							<br/>
+							<b>诊断结果：{{check.checkReport.reportImpression}}</b>
+						</div>
+					</div>
+
+					<div class="row border-bottom border-light">
+						<div class="col-50 align-left">
+							<b>{{check.itemName}}</b>
+						</div>
+						<div class="col-50 align-right">
+							单号：{{check.checkNo}}
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<ion-item ng-if="!hasmore" class="nomore">
+            没有更多
+        </ion-item>
+
+		<ion-infinite-scroll
+            ng-if="hasmore"
+            on-infinite="loadMore()"
+            distance="5%"
+            >
+        </ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,23 @@
+<ion-view title="意见反馈">
+
+	<ion-content padding="true" class="has-header">
+
+		<textarea
+			class="textarea border border-light"
+			ng-model="params.info"
+			placeholder="请填写您在使用过程中遇到的问题或对我们的建议"
+			style="height: 300px;"
+		></textarea>
+
+		<button
+			class=" button button-energized button-block"
+			ng-click="save();">
+			<b>提交</b>
+		</button>
+
+		<div>
+			<i class="ion-ios-telephone"></i>客服电话：400-3344-180
+		</div>
+
+	</ion-content>
+</ion-view>

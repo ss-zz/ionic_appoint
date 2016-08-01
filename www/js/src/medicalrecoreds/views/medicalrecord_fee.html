@@ -1,0 +1,75 @@
+<ion-view title="费用明细">
+	<ion-content padding="false" class="has-header">
+
+		<ion-refresher
+		    pulling-text="下拉刷新..."
+		    on-refresh="refresh()">
+		</ion-refresher>
+
+		<div ng-repeat="item in items" ng-click="item.SHOWORHIDE = !item.SHOWORHIDE">
+			<div class="row border-top">
+				<div class="col-60 align-left">
+					<b>{{item.outpatientRecord.diag}}</b>
+				</div>
+				<div class="col-40 align-right">
+					{{item.outpatientRecord.diagDate | date: 'yyyy-MM-dd'}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-60 align-left">
+					{{item.outpatientRecord.hospitalName}}
+					&nbsp;&nbsp;
+					{{item.outpatientRecord.departmentName}}
+				</div>
+				<div class="col-40 align-right">
+					<div ng-show="item.SHOWORHIDE">
+						收起<i class="ion-arrow-up-b"></i>
+					</div>
+					<div ng-show="!item.SHOWORHIDE">
+						展开<i class="ion-arrow-down-b"></i>
+					</div>
+				</div>
+			</div>
+			<div ng-show="item.SHOWORHIDE" ng-repeat="fee in item.fees" class="padding border-bottom border-light">
+
+				<div><b>药品项目</b></div>
+
+				<div ng-repeat="detail in fee.feeDetails | filter:{drugMark: '1'}" class="padding">
+
+					{{detail.detailItemName}}
+					&nbsp;
+					￥{{detail.detailItemCost}}元
+
+				</div>
+
+				<div><b>医疗项目</b></div>
+
+				<div ng-repeat="detail in fee.feeDetails | filter:{drugMark: '0'}" class="padding">
+
+					{{detail.detailItemName}}
+					&nbsp;
+					￥{{detail.detailItemCost}}元
+
+				</div>
+
+				<b>门诊费用：￥{{fee.clinCost}}元</b>
+				<br/>
+				<b>报销金额：￥{{fee.reimbursementCost}}元</b>
+				<br/>
+				<b>其它报销金额：￥{{fee.OTHER_COST}}元</b>
+
+			</div>
+		</div>
+		<ion-item ng-if="!hasmore" class="nomore">
+            没有更多
+        </ion-item>
+
+		<ion-infinite-scroll
+            ng-if="hasmore"
+            on-infinite="loadMore()"
+            distance="5%"
+            >
+        </ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,74 @@
+<ion-view title="预约挂号">
+
+	<ion-content padding="true" class="has-header">
+
+		<div class="row row-center border-bottom">
+			<div class="col col-10">
+				<img src="img/registered_loc.png" style="width: 100%">
+			</div>
+			<div class="col col-80">
+				{{appoint.zonename}}
+			</div>
+			<div class="col col-10">
+				<i class="icon ion-chevron-right"></i>
+			</div>
+		</div>
+
+		<a class="row row-center border-bottom"
+			ui-sref="hosSearch({targetState: 'appointDepart'})">
+			<div class="col col-10">
+				<img src="img/registered_home.png" style="width: 100%">
+			</div>
+			<div class="col col-80">
+				{{appoint.orgName}}
+			</div>
+			<div class="col col-10">
+				<i class="icon ion-chevron-right"></i>
+			</div>
+		</a>
+
+		<a class="row row-center border-bottom"
+			ui-sref="appointDepart({'hos': hos})">
+			<div class="col col-10">
+				<img src="img/registered_sjwk.png" style="width: 100%">
+			</div>
+			<div class="col col-80">
+				{{arrayJob.deptName}}
+			</div>
+			<div class="col col-10">
+				<i class="icon ion-chevron-right"></i>
+			</div>
+		</a>
+
+		<a class="row row-center border-bottom"
+			ui-sref="appointDate({'hos': hos, 'dept': dept})">
+			<div class="col col-10">
+				<img src="img/registered_date.png" style="width: 100%">
+			</div>
+			<div class="col col-80">
+				{{arrayJob.arrayjobDate | date: 'yyyy-MM-dd'}}
+				{{arrayJob.regisrationPeriodDn}}
+			</div>
+			<div class="col col-10">
+				<i class="icon ion-chevron-right"></i>
+			</div>
+		</a>
+
+		<a class="row row-center border-bottom"
+			ui-sref="appointDate({'hos': hos, 'dept': dept})">
+			<div class="col col-10">
+				<img src="img/registered_ptmz.png" style="width: 100%">
+			</div>
+			<div class="col col-80">
+				{{arrayJob.clinicName}}
+			</div>
+			<div class="col col-10">
+				<i class="icon ion-chevron-right"></i>
+			</div>
+		</a>
+
+		<button ng-if="arrayJob != null" class="button button-balanced  button-block " ng-click="appointMent();">预约</button>
+		<button ng-if="arrayJob == null" class="button button-stable  button-block">预约</button>
+
+	</ion-content>
+</ion-view>

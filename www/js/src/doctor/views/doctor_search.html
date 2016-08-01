@@ -1,0 +1,68 @@
+<ion-view title="找大夫">
+
+	<ion-content padding="false" class="has-header">
+
+		<div class="row"></div>
+
+		<form class="list padding-horizontal">
+			<label class="item item-input">
+				<input type="search" placeholder="医生" ng-model="searchParams.keyWord">
+				<i class="icon ion-search placeholder-icon padding"></i>
+			</label>
+		</form>
+
+		<div class="row" style="background-color: rgba(41, 173, 104, 0.286274509803922)">
+
+			<div class="col">
+				<ag-select
+					class="cs-select-center"
+					data="selectData.zone"
+					title="地区"
+					>
+				</ag-select>
+			</div>
+
+			<div class="col">
+				<ag-select
+					class="cs-select-center"
+					data="selectData.dept"
+					title="科室"
+					>
+				</ag-select>
+			</div>
+
+			<div class="col">
+				<ag-select
+					class="cs-select-center"
+					data="selectData.titleCode"
+					value="searchParams.titleCode"
+					title="职称"
+					>
+				</ag-select>
+			</div>
+
+		</div>
+
+		<ion-list>
+			<ion-item class="item-thumbnail-left" ng-repeat="item in items" ng-click="go(item)" >
+				<img src="img/doctor_head.png">
+				<h3>
+					<b>{{item.name}}</b>
+					{{item.genderDn}} {{item.profeTitleDn}}
+				</h3>
+				<span>{{item.hosOrgName}} <br/> {{item.deptName }}</span>
+			</ion-item>
+			<ion-item ng-if="!hasmore" class="nomore">
+				没有更多
+			</ion-item>
+		</ion-list>
+
+		<ion-infinite-scroll
+			ng-if="hasmore"
+			on-infinite="loadMore()"
+			distance="5%"
+			>
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

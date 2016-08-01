@@ -1,0 +1,343 @@
+/* Empty. Add your own CSS if you like */
+body{
+	color: #3A3838;
+	font-family: '微软雅黑 Regular', '微软雅黑';
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, i, u, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, fieldset,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video{
+	font-family: '微软雅黑 Regular', '微软雅黑';
+}
+body a{
+	color: #666666;
+}
+map {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.row + .row{
+	margin-top: 0px;
+	padding-top: 10px;
+}
+.scroll {
+	height: 100%;
+}
+.center {
+	text-align: center;
+}
+.align-left {
+	text-align: left;
+}
+.align-center {
+	text-align: center;
+}
+.align-right {
+	text-align: right;
+}
+a{
+	color: #000;
+	text-decoration: none;
+}
+.border{
+	border: 2px solid rgba(242, 242, 242, 1);
+}
+.border-bottom{
+	border-bottom: 2px solid rgba(242, 242, 242, 1);
+}
+.border-left{
+	border-left: 2px solid rgba(242, 242, 242, 1);
+}
+.border-right{
+	border-right: 2px solid rgba(242, 242, 242, 1);
+}
+.border-top{
+	border-top: 2px solid rgba(242, 242, 242, 1);
+}
+.border-color-main{
+	border-color: #2EC075;
+}
+.border-color-white{
+	border-color: white;
+}
+.border-weight{
+	border-width: 8px;
+}
+.border-light{
+	border-width: 1px;
+}
+.border-none{
+	border: none;
+}
+.border-circle{
+	border-radius: 50%;
+}
+.margin{
+	margin: 10px;
+}
+.margin-none{
+	margin: 0px;
+}
+.margin-left{
+	margin-left: 10px;
+}
+.margin-right{
+	margin-right: 10px;
+}
+.margin-bottom{
+	margin-bottom: 10px;
+}
+.margin-top{
+	margin-top: 10px;
+}
+.padding{
+	padding: 10px;
+}
+.padding-none{
+	padding: 0px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	padding-right: 0px;
+}
+.padding-left{
+	padding-left: 10px;
+}
+.padding-right{
+	padding-right: 10px;
+}
+.padding-bottom{
+	padding-bottom: 10px;
+}
+.padding-top{
+	padding-top: 10px;
+}
+.color-main{
+	color: #2EC075;
+}
+.color-white{
+	color: #fff;
+}
+.color-blue{
+	color: #00699C;
+}
+.color-light{
+	color: #999999;
+}
+.float-right{
+	float: right;
+}
+.float-left{
+	float: left;
+}
+span{
+	line-height: 1.8;
+}
+.font-i{
+	font-style: italic;
+}
+
+
+.custom-item{
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px solid #eee;
+}
+.href{
+	cursor: pointer;
+}
+
+/*自定义下拉插件*/
+.cs-select{}
+.cs-select-title{}
+.cs-select-title .cs-select-title-desc{
+	float: left;
+}
+.cs-select-title .cs-select-title-icon{
+	float: right;
+}
+.cs-select-center .cs-select-title-desc{
+	float: none;
+}
+.cs-select-center .cs-select-title-icon{
+	float: none;
+}
+.cs-select-items{
+	position: absolute;
+	width: 100%;
+	z-index: 9999;
+	text-align: center;
+	left: 0px;
+	right: 0px;
+	border-top: 1px solid #eee;
+}
+.cs-select-item{
+	background-color: #fff;
+	line-height: 2.5em;
+	border: 1px solid #eee;
+	border-top: none;
+}
+
+.overflow{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/*自定义背景色*/
+.bg-spe{
+	background-color: rgba(41, 173, 104, 0.286274509803922);
+}
+.bg-grey{
+	background-color: rgba(242, 242, 242, 0.349019607843137);
+}
+/*段落*/
+.paragraph{
+	text-indent: 2em;
+	line-height: 2em;
+}
+
+/*自定义table*/
+table{
+	width: 100%;
+	text-align: center;
+}
+/*自定义textarea*/
+.textarea{
+	width: 100%;
+	line-height: 1.5em;
+}
+/*没有更多*/
+.nomore{
+	text-align: center;
+	margin-bottom: 10px;
+}
+/*固定行文字*/
+p.text1 {
+/*单行*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-webkit-text-overflow: ellipsis;
+	-moz-text-overflow: ellipsis;
+	white-space: nowrap;
+}
+p.text2 {
+/*多行*/
+	word-break: break-all;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	white-space: normal;
+}
+/*资讯模块样式>>>*/
+.news{}
+.news .news-title{
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	padding-left: 105px;
+	padding-right: 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.news .news-date{
+	width: 100px;
+	right: 0px;
+	position: absolute;
+	font-size: 0.8em;
+}
+.news .news-summary{
+	position: absolute;
+	top: 40px;
+	left: 0px;
+	padding-left: 105px;
+}
+.news .news-title-width{
+	padding-right: 0px;
+}
+.news .news-title-leftwidth{
+	padding-left: 10px;
+}
+/*资讯模块样式<<<*/
+.i{
+	font-style: italic;
+}
+/*消息提醒背景色*/
+.msg-bgcolor-typea{background-color: rgba(202, 242, 221, 1);}
+.msg-bgcolor-typeb{background-color: rgba(255, 238, 213, 1);}
+.msg-bgcolor-typec{background-color: rgba(248, 220, 247, 1);}
+.msg-bgcolor-typed{background-color: rgba(202, 242, 221, 1);}
+.msg-bgcolor-typee{background-color: rgba(154, 231, 190, 1);}
+.msg-bgcolor-typef{background-color: rgba(255, 255, 204, 1);}
+
+/*预约挂号选择号源页面*/
+.appoint-date-select{
+	background-color: rgba(41, 173, 104, 0.286274509803922);
+	font-weight: bold;
+	border-bottom: 2px solid;
+}
+.appoint-zones{
+	background-color: rgba(244, 255, 254, 1);
+}
+.appoint-zone{
+	border-radius: 7px;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	color: #fff;
+	text-align: center;
+}
+.appoint-zone-type{
+	background-color: rgba(255, 204, 0, 1);
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	float: left;
+	padding: 2px 20px;
+}
+.appoint-zone-canappoint{
+	background-color: rgba(41, 173, 104, 1);
+}
+.appoint-zone-notappoint{
+	background-color: rgba(204, 204, 204, 0.498039215686275);
+	color: #333333;
+}
+/*预约挂号成功页面*/
+.blue_font{
+	color: blue;
+}
+.red_font{
+	color: red;
+}
+/*叫号跟踪页面*/
+.callno{
+	width: 80%;
+	height: 100%;
+}
+.callno-no{
+	background-color: rgba(255, 204, 0, 1);
+	text-align: center;
+	padding: 5px;
+}
+.callno-text{
+	background-color: rgba(51, 204, 153, 1);
+	color: #fff;
+	text-align: center;
+	padding: 5px;
+}
+/*星星评价*/
+.evaluate-select-item{
+	float: left;
+}

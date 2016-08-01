@@ -1,0 +1,22 @@
+<ion-view>
+    <ion-tabs class="tabs-stable tabs-icon-top ">
+
+        <ion-nav-view name="tab-content"></ion-nav-view>
+
+        <ion-tab title="首页" icon="ion-android-home" ng-click="selectTabWithIndex(1, 'app.index')">
+            <ion-nav-view name="tabIndex"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="医院" icon="ion-android-list" ng-click="selectTabWithIndex(2, 'app.hospital')">
+            <ion-nav-view name="tabHospital"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="记录" icon="ion-ios-cloud" ng-click="selectTabWithIndex(3, 'app.medicalrecored')" >
+            <ion-nav-view name="tabMedicalrecored"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="资讯" icon="ion-ios-list-outline" ng-click="selectTabWithIndex(4, 'app.news')">
+            <ion-nav-view name="tabNews"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="我的" icon="ion-android-contact" ng-click="selectTabWithIndex(5, 'app.my')">
+            <ion-nav-view name="tabMy"></ion-nav-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

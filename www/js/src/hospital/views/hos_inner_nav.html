@@ -1,0 +1,22 @@
+<ion-view title="就医导航">
+	<ion-content padding="false" hide-back-button="true" class="has-header">
+
+		<div class="padding border-bottom border-weight">
+			<h4><b>{{hos.hosOrgName}}</b></h4>
+		</div>
+
+		<div class="row border-bottom border-light"
+			ng-repeat="nav in navs"
+			ui-sref="hosInnerNavDetail({'hos': hos, 'nav': nav})"
+			>
+			<div class="col">
+				{{nav.navtitle}}
+			</div>
+			<div class="col col-10">
+				<i class="icon ion-chevron-right"></i>
+			</div>
+		</div>
+
+
+	</ion-content>
+</ion-view>

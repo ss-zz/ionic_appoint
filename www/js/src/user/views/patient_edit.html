@@ -1,0 +1,36 @@
+<ion-view title="个人信息">
+
+	<ion-content padding="true" class="has-header">
+
+		<div class="list">
+			<label class="item item-input ">
+				<input ng-model="patient.name" type="text" placeholder="姓名">
+			</label>
+		</div>
+		<div class="list">
+
+			<ag-select
+				class="border padding border-light"
+				data="selectData.gender"
+				title="性别"
+				value="patient.gender"
+				default-desc="patient.gender"
+				default-value="patient.gender"
+				>
+			</ag-select>
+
+		</div>
+		<div class="list">
+			<label class="item item-input ">
+				<input ng-model="patient.idNo" type="text" placeholder="身份证号">
+			</label>
+		</div>
+
+		<div class="row">
+			• 友情提示：身份证号将作为就医导向的重要身份标识，请正确填写。
+		</div>
+
+		<button class=" button button-balanced  button-block" ng-click="edit();">保存信息</button>
+
+	</ion-content>
+</ion-view>

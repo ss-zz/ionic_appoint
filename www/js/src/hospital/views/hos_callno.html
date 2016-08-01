@@ -1,0 +1,34 @@
+<ion-view title="叫号跟踪">
+	<ion-content padding="false" hide-back-button="true" class="has-header">
+
+		<div class="row">
+			<h4><b>{{hos.hosOrgName}}</b></h4>
+		</div>
+		<div class="row padding border-bottom border-weight">
+			<div class="col col-40">
+				<button class="button button-energized button-block"
+					ng-click="refresh()">
+					刷新
+				</button>
+			</div>
+			<div class="col col-center">
+				更新于：{{refreshTime | date: 'HH:mm:ss'}}
+			</div>
+		</div>
+
+		<div class="row padding border-bottom"
+			ng-repeat="no in nos">
+			<div class="col-50">
+				<div class="callno">
+					<div class="callno-no"><b>{{no.currentNo}}</b></div>
+					<div class="callno-text">当前叫号</div>
+				</div>
+			</div>
+			<div class="col col-center">
+				<b>{{no.deptName}}</b>
+			</div>
+
+		</div>
+
+	</ion-content>
+</ion-view>

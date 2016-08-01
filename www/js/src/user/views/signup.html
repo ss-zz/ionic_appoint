@@ -1,0 +1,31 @@
+<ion-view title="注册">
+	<ion-content padding="true" class="has-header">
+
+		<div class="list">
+			<label class="item item-input">
+				<input type="text" placeholder="手机号">
+			</label>
+		</div>
+		<div class="list">
+			<div class="item item-input-inset">
+				<label class="item item-input">
+					<input type="text" placeholder="验证码">
+				</label>
+				<button class="button">
+					发送验证码
+				</button>
+			</div>
+		</div>
+		<div class="list">
+			<label class="item item-input ">
+				<input type="password" placeholder="密码：6~18位数字或字母">
+			</label>
+		</div>
+
+		<button class=" button button-balanced  button-block"
+			ng-click="register()">
+			现在注册
+		</button>
+
+	</ion-content>
+</ion-view>

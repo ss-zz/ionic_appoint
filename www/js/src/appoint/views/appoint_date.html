@@ -1,0 +1,66 @@
+<ion-view title="预约挂号">
+
+	<ion-content padding="false" class="has-header">
+		<div class="row h4 bg-spe padding"><b>{{hos.hosOrgName}}</b></div>
+		<div class="row">
+			<div class="col-20 margin button button-balanced button-small button-block" ng-click="prex()">上周</div>
+			<div class="col-20 margin button button-balanced button-small button-block" ng-click="next()">下周</div>
+			<a class="col-50 col-center align-right padding-right"
+				ui-sref="appointDepart({'hos': hos})">
+				{{dept.deptName}}
+				<span class="cs-select-title-icon">▼</span>
+			</a>
+		</div>
+
+		<div class="row">
+			<div
+				class="border border-light center"
+				style="width: 14.2%; background-color: {{da.bgc}}"
+				ng-repeat="da in dateList"
+				ng-class="{'appoint-date-select': currentDate == da.date}"
+				ng-click="selectDate(da)"
+				>
+					<div>
+						<span>{{da.week}}</span>
+					</div>
+					<div>
+						<span>{{da.simpleDate}}</span>
+					</div>
+			</div>
+		</div>
+
+		<div ng-repeat="jobs in allJobs" class="margin">
+			<div class="appoint-zone-type">
+				<div ng-switch on="$index">
+					<div ng-switch-when="0">全班</div>
+					<div ng-switch-when="1">上午</div>
+					<div ng-switch-when="2">下午</div>
+					<div ng-switch-when="3">晚上</div>
+				</div>
+			</div>
+			<div class="row border-light border appoint-zones">
+				<div
+					class = "appoint-zone"
+					ng-repeat = "job in jobs"
+					ng-click = "goAppoint(job)"
+					ng-class = "{
+					'appoint-zone-canappoint': job.allowReservationNum > 0,
+					'appoint-zone-notappoint': job.allowReservationNum <= 0}"
+					>
+					<div>{{job.clinicName}}</div>
+					<div>{{job.expName}}</div>
+					<div ng-if="job.allowReservationNum > 0">
+						预约>
+					</div>
+					<div ng-if="job.allowReservationNum <= 0">
+						约满
+					</div>
+				</div>
+				<div ng-if="!jobs || jobs.length == 0">
+					无号源
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

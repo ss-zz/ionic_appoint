@@ -1,0 +1,109 @@
+<ion-view title="提醒">
+
+	<ion-content padding="true" class="has-header">
+		<div class="row border-bottom border-light">
+			<div class="col col-70">
+				<b>{{ext.hosOrgName}}</b>
+			</div>
+			<div class="col col-30 align-right">
+				{{message.createtime | date: 'yyyy-MM-dd HH:mm:ss'}}
+			</div>
+		</div>
+
+		<div class="padding">
+			{{message.msgdetail}}
+		</div>
+
+		<div>
+			<a ng-if="type == '1' || type == '2'"
+				class="button button-balanced margin"
+				ui-sref="hospital({'hosId': ext.hosId})">
+				医院介绍
+			</a>
+			<a ng-if="type == '1' || type == '2' || type == '3'"
+				class="button button-balanced margin"
+				ui-sref="hosNav({'hosId': ext.hosId})">
+				医院路线
+			</a>
+			<a ng-if="type == '3'"
+				class="button button-balanced margin"
+				ui-sref="hosInnerNavDetail({
+				'hos': {'hosId': ext.hosId, 'hosOrgName': ext.hosOrgName},
+				'nav': {'navtype': 5}})">
+				取号处位置
+			</a>
+			<a ng-if="type == '4'"
+				class="button button-balanced margin"
+				ui-sref="appointDepart({
+				'hos': {
+					'id': ext.hosId,
+					'hosId': ext.hosId,
+					'hosOrgName': ext.hosOrgName}})">
+				科室导航
+			</a>
+			<a ng-if="type == '4' || type == '13'"
+				class="button button-balanced margin"
+				ui-sref="hosCallNo({
+				'hos': {
+					'id': ext.hosId,
+					'hosId': ext.hosId,
+					'hosOrgName': ext.hosOrgName}})">
+				叫号查询
+			</a>
+			<a ng-if="type == '5' || type == '8' || type == '11'"
+				class="button button-balanced margin"
+				ui-sref="hosInnerNavDetail({
+				'hos': {'hosId': ext.hosId, 'hosOrgName': ext.hosOrgName},
+				'nav': {'navtype': 6}
+				})">
+				收费处导航
+			</a>
+			<a ng-if="type == '12' || type == '14'"
+				class="button button-balanced margin"
+				ui-sref="hosDrugNote">
+				药房须知
+			</a>
+			<a ng-if="type == '12' || type == '13'"
+				class="button button-balanced margin"
+				ui-sref="hosInnerNavDetail({
+				'hos': {'hosId': ext.hosId, 'hosOrgName': ext.hosOrgName},
+				'nav': {'navtype': 9}
+				})">
+				药房导航
+			</a>
+			<a ng-if="type == '11' || type == '12' || type == '14'"
+				class="button button-balanced margin"
+				ui-sref="medicalrecoredPre({
+				'idNo': ext.idNo,
+				'hosOrgCode': ext.hosOrgCode,
+				'preNo': ext.prescribeNo
+				})">
+				处方查看
+			</a>
+			<a ng-if="type == '14'"
+				class="button button-balanced margin"
+				ui-sref="hosDrugNote">
+				服药须知
+			</a>
+			<a ng-if="type == '12'"
+				class="button button-balanced margin"
+				ui-sref="drugAlert">
+				设置服药提醒
+			</a>
+			 <a ng-if="type == '20'"
+				class="button button-balanced margin"
+				ui-sref="outEvaluate({
+				'hos': {'hosOrgCode': ext.hosOrgCode, 'hosOrgName': ext.hosOrgName},
+				'clinNo': ext.clinNo
+				})">
+				评价
+			</a>
+			 <a ng-if="type == '17'"
+				class="button button-balanced margin"
+				ui-sref="">
+				快速预约
+			</a>
+		</div>
+
+	</ion-content>
+</ion-view>

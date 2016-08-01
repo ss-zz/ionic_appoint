@@ -1,0 +1,106 @@
+<ion-view title="个人中心" hide-back-button="true">
+	<ion-content padding="false" class="has-header">
+
+	<div style="background: url(img/userbackground.jpg) center;"
+		ng-click="clickTop()">
+		<div class="row center" >
+			<div class="col center">
+				<img ng-if="!imageBase64"
+					src="img/user_head.png"
+					style="width: 20%;">
+				<img class ="border-circle"
+					ng-if="imageBase64"
+					ng-src="{{imageBase64}}"
+					style="width: 20%;">
+			</div>
+		</div>
+
+		<div class="row center color-white">
+			<div class="col col-center">
+				{{user.name}}
+				<div ng-if="!isLogin" class="color-white">点击登录</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row row-center border-bottom border-weight">
+		<a class="col center border-right" ui-sref="messagelist">未读消息 <span style="color: red;">{{unreadMessageCount}}</span></a>
+		<a class="col center" ui-sref="patientList">
+			我的就诊人
+			<b>{{myPatientCount}}</b>
+		</a>
+	</div>
+
+	<a class="row row-center border-bottom">
+		<div class="col col-10">
+			<img src="img/user_02.png" style="width: 100%">
+		</div>
+		<div class="col col-80">
+			健康档案
+		</div>
+		<div class="col col-10">
+			<img src="img/arrow_right_disable.png" style="height: 50%">
+		</div>
+	</a>
+	<a class="row row-center border-bottom" ui-sref="appointList">
+		<div class="col col-10">
+			<img src="img/user_01.png" style="width: 100%">
+		</div>
+		<div class="col col-80">
+			我的预约
+		</div>
+		<div class="col col-10">
+			<img src="img/arrow_right_disable.png" style="height: 50%">
+		</div>
+	</a>
+	<a class="row row-center border-bottom">
+		<div class="col col-10">
+			<img src="img/user_03.png" style="width: 100%">
+		</div>
+		<div class="col col-80">
+			我的就医卡
+		</div>
+		<div class="col col-10">
+			<img src="img/arrow_right_disable.png" style="height: 50%">
+		</div>
+	</a>
+	<a class="row row-center border-bottom"
+		ui-sref="drugAlert">
+		<div class="col col-10">
+			<img src="img/shouye_05.png" style="width: 100%">
+		</div>
+		<div class="col col-80">
+			服药提醒
+		</div>
+		<div class="col col-10">
+			<img src="img/arrow_right_disable.png" style="height: 50%">
+		</div>
+	</a>
+
+	<a class="row row-center border-top border-bottom" ui-sref="introduction">
+		<div class="col col-90">
+			功能介绍
+		</div>
+		<div class="col col-10">
+			<img src="img/arrow_right_disable.png" style="height: 50%">
+		</div>
+	</a>
+	<a class="row row-center border-bottom" ui-sref="opinion">
+		<div class="col col-90">
+			意见反馈
+		</div>
+		<div class="col col-10">
+			<img src="img/arrow_right_disable.png" style="height: 50%">
+		</div>
+	</a>
+	<a class="row row-center border-bottom" ui-sref="aboutUs">
+		<div class="col col-90">
+			关于我们
+		</div>
+		<div class="col col-10">
+			<img src="img/arrow_right_disable.png" style="height: 50%">
+		</div>
+	</a>
+
+	</ion-content>
+</ion-view>

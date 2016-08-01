@@ -1,0 +1,41 @@
+<ion-view title="服药提醒">
+	<ion-content padding="false" class="has-header">
+
+		<div class="row bg-spe">
+			<a ng-click="changezone(0)"
+				class="col center border-right border-color-white"
+				ng-class="{'color-main': current == 0}"
+				>
+				凌晨
+			</a>
+			<a ng-click="changezone(1)"
+				class="col center border-right border-color-white"
+				ng-class="{'color-main': current == 1}"
+				>
+				上午
+			</a>
+			<a ng-click="changezone(2)"
+				class="col center border-right border-color-white"
+				ng-class="{'color-main': current == 2}"
+				>
+				下午
+			</a>
+			<a ng-click="changezone(3)"
+				class="col center border-color-white"
+				ng-class="{'color-main': current == 3}"
+				>
+				晚上
+			</a>
+		</div>
+
+		<div class="list">
+			<ion-toggle
+				ng-repeat="al in alerts[current]"
+				ng-model="al.checked"
+				ng-change="setTime(al)">
+				{{ al.time }}
+			</ion-toggle>
+		</div>
+
+	</ion-content>
+</ion-view>

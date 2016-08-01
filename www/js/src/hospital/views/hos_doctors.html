@@ -1,0 +1,33 @@
+<ion-view title="专家介绍">
+
+	<ion-content padding="false" class="has-header">
+
+		<div class="padding border-bottom border-weight">
+			<h4><b>{{hos.hosOrgName}}</b></h4>
+		</div>
+
+		<ion-list>
+			<ion-item class="item-thumbnail-left"
+				ng-repeat="item in doctors"
+				ui-sref="doctorDetail({'doctor': item})" >
+				<img src="img/doctor_head.png">
+				<h3>
+					<b>{{item.name}}</b>
+					{{item.genderDn}} {{item.profeTitleDn}}
+				</h3>
+				<span>{{item.deptName }}</span>
+			</ion-item>
+			<ion-item ng-if="!hasmore" class="nomore">
+				没有更多
+			</ion-item>
+		</ion-list>
+
+		<ion-infinite-scroll
+			ng-if="hasmore"
+			on-infinite="loadMore()"
+			distance="5%"
+			>
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

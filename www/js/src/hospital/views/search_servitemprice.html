@@ -1,0 +1,48 @@
+<ion-view title="服务项目价格查询">
+
+    <ion-content padding="false" class="has-header">
+
+        <div class="row">
+            <div class="col-80">
+                <h4><b>{{hos.hosOrgName}}</b></h4>
+            </div>
+            <div class="col-20">
+                <h4>
+                    <a ui-sref="hosSearch({targetState: 'servItemPriceSearch'})">切换&gt;</a>
+                </h4>
+            </div>
+        </div>
+
+        <form class="list padding-horizontal">
+            <label class="item item-input">
+                <input type="search" placeholder="服务项目" ng-change="refresh();" ng-model="searchParams.serName">
+                <i class="icon ion-search placeholder-icon padding"></i>
+            </label>
+        </form>
+
+        <ion-list>
+            <ion-item ng-repeat="item in items" >
+                <h2>{{item.servicename }}</h2>
+            
+                <p>
+                    ￥{{item. price }}元/{{item.unit }}
+                </p>             
+                <p>
+                    {{item.desc  }}
+                </p>
+            </ion-item>
+            <ion-item ng-if="!hasmore" class="nomore">
+                没有更多
+            </ion-item>
+        </ion-list>
+
+        <ion-infinite-scroll
+            ng-if="hasmore"
+            on-infinite="loadMore()"
+            distance="5%"
+            immediate-check="false"
+            >
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>

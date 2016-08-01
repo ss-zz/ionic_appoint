@@ -1,0 +1,42 @@
+<ion-view title="我的就诊人">
+
+    <ion-content padding="false" class="has-header">
+
+        <ion-refresher
+            pulling-text="下拉刷新..."
+            on-refresh="refresh()">
+        </ion-refresher>
+
+        <a class="row border margin href border-light" ng-repeat="patient in items" ng-click="go(patient)" style="width: auto;">
+
+            <div class="col-20 col-center center">
+                <b>{{patient.name}}</b>
+            </div>
+            <div class="col-60 col-center border-left padding-left border-light">
+                <span>
+                {{patient.gender}} {{patient.birth | date:'yyyy-MM-dd'}}
+                <img src="img/girl.png" ng-if="patient.gender == '女'" height="20px">
+                <img src="img/man.png" ng-if="patient.gender == '男'" height="20px">
+                </span>
+                <span>{{patient.phone}}</span>
+                <span>{{patient.idNo}}</span>
+            </div>
+            <div class="col-20 col-center">
+                <span class="color-main" ng-if="patient.isUser == '1'">
+                    √默认
+                </span>
+            </div>
+        </a>
+        <div class="nomore padding" ng-if="!hasmore">
+            没有更多
+        </div>
+
+        <ion-infinite-scroll
+            ng-if="hasmore"
+            on-infinite="loadMore()"
+            distance="5%"
+            >
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>

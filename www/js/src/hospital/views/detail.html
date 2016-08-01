@@ -1,0 +1,83 @@
+<ion-view title="医院主站" hide-back-button="true">
+	<ion-content padding="false" hide-back-button="true" class="has-header">
+
+		<div class="row border-weight border-bottom"
+			 ui-sref="hosSearch({targetState: 'hospital'})">
+			<div class="col-80">
+				<h4><b>{{hos.hosOrgName}}</b></h4>
+				{{hos.hosLevel}} {{hos.hosType}}
+				<br/>
+				地址：{{hos.hosAddr}}
+			</div>
+			<div class="col-20 col-center">
+				<a>切换&gt;</a>
+			</div>
+		</div>
+		<div class="row border-bottom border-top">医院信息</div>
+		<div class="row">
+			<a class="col" ui-sref="hosDeptSpe({'hos': hos})">
+				<img src="img/ho2.png" width=30%>
+				<span>特色科室</span>
+			</a>
+			<a class="col" ui-sref="hosDoctors({'hos': hos})">
+				<img src="img/ho1.png" width=30%>
+				专家介绍
+			</a>
+			<a class="col" ui-sref="hosNav({'hos': hos})">
+				<img src="img/ho3.png" width=30%>
+				医院导航
+			</a>
+		</div>
+
+		<div class="row border-top border-weight">医院服务</div>
+		<a class="item item-avatar" ui-sref="appointDepart({'hos': hos})">
+			<img src="img/yiyuan_06.png">
+			<span><b>预约挂号</b></span>
+			<br/>
+			<span>提前预约本医院就诊，无需排队</span>
+		</a>
+		<a class="item item-avatar"
+			ui-sref="hosCallNo({'hos': hos})">
+			<img src="img/yiyuan_09.png">
+			<span><b>叫号跟踪</b></span>
+			<br/>
+			<span>跟踪就诊科室叫号情况</span>
+		</a>
+		<a class="item item-avatar"
+			ui-sref="hosInnerNav({'hos': hos})">
+			<img src="img/yiyuan_07.png">
+			<span><b>就医导航</b></span>
+			<br/>
+			<span>院内导航，查询收费处、洗手间等的位置</span>
+		</a>
+		<a class="item item-avatar"
+			ui-sref="hosPriceSearch({'hos': hos})">
+			<img src="img/yiyuan_02.png">
+			<span><b>价格查询</b></span>
+			<br/>
+			<span>药品价格和医疗服务价格查询</span>
+		</a>
+		<a class="item item-avatar"
+			ui-sref="medicalrecoredPre({'hosOrgCode': hos.hosOrgCode})">
+			<img src="img/yiyuan_08.png">
+			<span><b>门诊处方查询</b></span>
+			<br/>
+			<span>查询在本院的门诊处方信息</span>
+		</a>
+		<a class="item item-avatar"
+			ui-sref="medicalrecoredReport({'hosOrgCode': hos.hosOrgCode})">
+			<img src="img/yiyuan_05.png">
+			<span><b>检查检验报告</b></span>
+			<br/>
+			<span>查看检查检验报告</span>
+		</a>
+		<a class="item item-avatar"
+			ui-sref="medicalrecoredFee({'hosOrgCode': hos.hosOrgCode})">
+			<img src="img/yiyuan_13.png">
+			<span><b>门诊费用查询</b></span>
+			<br/>
+			<span>查询在本院的消费明细</span>
+		</a>
+
+	</ion-content>
+</ion-view>

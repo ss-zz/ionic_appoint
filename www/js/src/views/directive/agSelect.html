@@ -1,0 +1,13 @@
+<div class="cs-select">
+	<div class="cs-select-title href center overflow" ng-click="showSelect = !showSelect;">	
+		<span class="cs-select-title-desc">{{currentDesc}}</span>
+		<span class="cs-select-title-icon">▼</span>
+	</div>
+	<div ng-show="showSelect" class="cs-select-items">
+		<div class="href cs-select-item"
+			ng-repeat="item in data"
+			ng-click="click(item)">
+			{{item.desc}}
+		</div>
+	</div>
+</div>

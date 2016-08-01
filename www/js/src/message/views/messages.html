@@ -1,0 +1,63 @@
+<ion-view title="我的消息">
+
+	<ion-content padding="true" class="has-header">
+
+		<ion-refresher
+			pulling-text="下拉刷新..."
+			on-refresh="refresh()">
+		</ion-refresher>
+
+		<a class="row margin-bottom border border-light"
+			ng-repeat="message in items"
+			ui-sref="messagedetail({message: message})"
+			ng-class="{
+			'msg-bgcolor-typea':
+				message.msgtype =='1'
+				|| message.msgtype =='2'
+				|| message.msgtype =='3'
+				|| message.msgtype =='4',
+			'msg-bgcolor-typeb':
+				message.msgtype =='5'
+				|| message.msgtype =='6'
+				|| message.msgtype =='7'
+				|| message.msgtype =='8'
+				|| message.msgtype =='9'
+				|| message.msgtype =='10',
+			'msg-bgcolor-typec':
+				message.msgtype =='11'
+				|| message.msgtype =='12'
+				|| message.msgtype =='13'
+				|| message.msgtype =='14'
+				|| message.msgtype =='15'
+				|| message.msgtype =='16',
+			'msg-bgcolor-typed':
+				message.msgtype =='17',
+			'msg-bgcolor-typee':
+				message.msgtype =='18'
+				|| message.msgtype =='19',
+			'msg-bgcolor-typef':
+				message.msgtype =='20'
+			}"
+			>
+			<div class="col col-10" >
+				<img ng-if="message.state == '0'" src="img/dot.png">
+			</div>
+			<div class="col col-90" >
+				<p><b>{{message.msg}}</b></p>
+				<span>{{message.createtime | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+			</div>
+		</a>
+
+		<div class="nomore padding" ng-if="!hasmore">
+			没有更多
+		</div>
+
+		<ion-infinite-scroll
+			ng-if="hasmore"
+			on-infinite="loadMore()"
+			distance="5%"
+			>
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,172 @@
+<ion-view title="就诊明细">
+	<ion-content padding="false" class="has-header">
+
+		<div class="row">
+			<div class="col-80 col-center">
+				<b>{{outpatientRecord.diag}}</b>
+				<br/>
+
+				{{outpatientRecord.hospitalName}}
+				&nbsp;&nbsp;
+				{{outpatientRecord.departmentName}}
+				<br/>
+				<span class="color-main">检验单{{tests.length}}</span>
+				&nbsp;&nbsp;
+				<span class="color-main">检查单{{checks.length}}</span>
+				&nbsp;&nbsp;
+				<span class="color-main">处方单{{prescribes.length}}</span>
+
+			</div>
+			<div class="col-20 border-left col-center center">
+				{{outpatientRecord.diagDate | date:'MM/dd'}}
+				<br/>
+				{{outpatientRecord.diagDate | date:'yyyy'}}
+			</div>
+		</div>
+
+		<div class="padding">
+
+			<div class="row bg-spe">
+				<a ng-click="current = 'Ele';"
+					class="col center border-right border-color-white href"
+					ng-class="{'color-main': current == 'Ele'}"
+					>电子病历</a>
+				<a ng-click="current = 'Test'"
+					class="col center border-right border-color-white href"
+					ng-class="{'color-main': current == 'Test'}"
+					>检验单</a>
+				<a ng-click="current = 'Check'"
+					class="col center border-right border-color-white href"
+					ng-class="{'color-main': current == 'Check'}"
+					>检查单</a>
+				<a ng-click="current = 'Pre'"
+					class="col center href"
+					ng-class="{'color-main': current == 'Pre'}"
+					>处方单</a>
+			</div>
+
+			<div ng-show="current == 'Ele'">
+				<b>主诉</b>
+				<br/>
+				{{electronicMedicalRecord.complaint}}
+				<br/>
+				<br/>
+
+				<b>现病史</b>
+				<br/>
+				{{electronicMedicalRecord.medhis}}
+				<br/>
+				<br/>
+
+				<b>体格检查</b>
+				<br/>
+				{{electronicMedicalRecord.bodycheck}}
+				<br/>
+				<br/>
+
+				<b>辅助检查</b>
+				<br/>
+				{{electronicMedicalRecord.asscheck}}
+				<br/>
+				<br/>
+
+				<b>诊断</b>
+				<br/>
+				{{electronicMedicalRecord.diag}}
+				<br/>
+				<br/>
+
+			</div>
+
+			<div ng-show="current == 'Test'">
+				<div ng-repeat="test in tests" class="margin">
+					<div class="row padding">
+						<div class="col-50 align-left">
+							<b>{{test.testSpecies}}</b>
+						</div>
+						<div class="col-50 align-right">
+							单号：{{test.testReportNo}}
+						</div>
+					</div>
+					<table>
+						<tr class="border-top border-bottom" style="border-bottom-width: 1px;">
+							<td>项目名称</td>
+							<td>测试结果</td>
+							<td>单位</td>
+							<td>参考值</td>
+						</tr>
+						<tr ng-repeat="testDtail in test.testReport.testReportDetails">
+							<td>{{testDtail.itemName}}</td>
+							<td>{{testDtail.testValue}}</td>
+							<td>{{testDtail.testMeUnit}}</td>
+							<td>{{testDtail.referenceLimit}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div ng-show="current == 'Check'">
+				<div ng-repeat="check in checks">
+					<div class="row border-bottom border-light">
+						<div class="col-50 align-left">
+							<b>{{check.itemName}}</b>
+						</div>
+						<div class="col-50 align-right">
+							单号：{{check.checkNo}}
+						</div>
+					</div>
+					<div class="padding border-bottom">
+
+						{{check.checkReport.reportDescription}}
+						<br/>
+						<br/>
+						<b>诊断结果：{{check.checkReport.reportImpression}}</b>
+
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="current == 'Pre'">
+			<div ng-repeat="pre in prescribes">
+					<div class="row border-bottom border-light">
+						<div class="col-50 align-left">
+							<b>{{pre.cmWVal}}</b>
+						</div>
+						<div class="col-50 align-right">
+							单号：{{pre.prescribeNo}}
+						</div>
+					</div>
+					<div ng-repeat="preDetail in pre.prescribeDetails" class="border-bottom border-light padding">
+
+						{{preDetail.detailItemName}}
+						<br/>
+
+
+						{{preDetail.drugTypeValue}}
+						&nbsp;&nbsp;
+
+						{{preDetail.doseSingle}}
+						{{preDetail.doseUnit}}
+						&nbsp;&nbsp;
+
+						{{preDetail.everyTimeAmount}}{{preDetail.everyTimeUnit}}
+						/{{preDetail.usingDrugDays}}
+
+						&nbsp;&nbsp;
+						{{preDetail.usingDrugFreq}}
+						&nbsp;&nbsp;
+						{{preDetail.drugWayDn}}
+
+						<br/>
+						{{preDetail.REMARK}}
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</ion-content>
+</ion-view>
