@@ -191,6 +191,13 @@ angular.module('app.routes', [])
 		templateUrl: 'js/src/user/views/patient_edit.html',
 		controller: 'PatientEditCtrl'
 	})
+	//添加就诊人
+	.state('patientadd', {
+		url: '/patient-add',
+		//params: {patient: null},
+		templateUrl: 'js/src/user/views/add_patient.html',
+		controller: 'PatientEditCtrl'
+	})
 	//就医卡列表
 	.state('mymedicalcardlist', {
 		url: '/mymedicalcardlist',

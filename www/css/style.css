@@ -28,8 +28,19 @@ map {
 }
 .row + .row{
 	margin-top: 0px;
-	padding-top: 10px;
+	padding-top: 0px;
 }
+.row-no-padding > .col {
+    padding: 5px;
+}
+.button-small {
+    padding: 2px 1px 2px;
+    min-width: 10px;
+    min-height: 0px;
+    font-size: 12px;
+    line-height: 20px;
+}
+
 .scroll {
 	height: 100%;
 }
@@ -50,8 +61,10 @@ a{
 	text-decoration: none;
 }
 .border{
+	display: inline;
 	border: 2px solid rgba(242, 242, 242, 1);
 }
+
 .border-bottom{
 	border-bottom: 2px solid rgba(242, 242, 242, 1);
 }
@@ -331,6 +344,7 @@ p.text2 {
 	text-align: center;
 	padding: 5px;
 }
+
 .callno-text{
 	background-color: rgba(51, 204, 153, 1);
 	color: #fff;

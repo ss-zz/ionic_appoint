@@ -30,7 +30,9 @@
         <div class="nomore padding" ng-if="!hasmore">
             没有更多
         </div>
-
+         <div class="addcard padding has-footer" >
+        	<button class="button button-energized button-block" ng-click="addpatient();">添加就诊人</button>
+        </div>
         <ion-infinite-scroll
             ng-if="hasmore"
             on-infinite="loadMore()"

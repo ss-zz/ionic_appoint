@@ -33,6 +33,12 @@ app.service('DoctorService', function(UTIL_HTTP){
 				data: params
 			});
 		},
+		
+		
+		
+		
+		
+		
 	};
 
 })

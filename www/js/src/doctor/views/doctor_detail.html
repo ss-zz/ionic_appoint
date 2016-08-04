@@ -16,12 +16,100 @@
 		</div>
 
 		<div class="row border-bottom">简介</div>
-		<div class="row">
+		<div class="row border-bottom">
 			{{doctor.resume}}
 		</div>
 
 		<div class="row border-bottom">出诊</div>
+		<div class="center">
+		<div class="row ">
+			<div class="col col-20  center" ng-click="prex()"><</div>
+			<div class="col  center col"><span >{{start}}-{{end}}</span></div>
+			<div class="col col-20  center" ng-click="next()">></div>
+		</div>
+		
+	   </div>
+	<div class="row row-no-padding padding-left padding-right" >
+	<div class="col border border-light"></div>
+  <div class="col border border-light center" id="w1" >一</div>
+  <div class="col border border-light center" id="w2">二</div>
+   <div class="col border border-light center" id="w3">三</div>
+    <div class="col border border-light center"id="w4">四</div>
+     <div class="col border border-light center" id="w5">五</div>
+      <div class="col border border-light center" id="w6">六</div>
+       <div class="col border border-light center" id="w7">七</div>
+</div>
+
+	<div ng-repeat="name in Names1" class=" row row-no-padding padding-left padding-right ">
+		<a class="col border border-light center">{{name.name}}</a>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+<div class="row row-no-padding padding-left padding-right" >
+	<div class="col border border-light"></div>
+  <div class="col border border-light center" id="w1" >一</div>
+  <div class="col border border-light center" id="w2">二</div>
+   <div class="col border border-light center" id="w3">三</div>
+    <div class="col border border-light center"id="w4">四</div>
+     <div class="col border border-light center" id="w5">五</div>
+      <div class="col border border-light center" id="w6">六</div>
+       <div class="col border border-light center" id="w7">七</div>
+</div>
 
 
+
+<div class=" row row-no-padding padding-left padding-right" id="one">
+
+  <div class="col border border-light center">全班</div> 
+  <div class="col border border-light center" id="q1">
+  	
+  </div>
+  <div class="col border border-light center"id="q2"></div>
+   <div class="col border border-light center"id="q3"></div>
+    <div class="col border border-light center"id="q4"></div>
+     <div class="col border border-light center"id="q5"></div>
+      <div class="col border border-light center" id="q6"></div>
+       <div class="col border border-light center"id="q7"></div>
+</div>
+<div class=" row row-no-padding padding-left padding-right" id="two">
+	
+	 <div class="col border border-light center" >上午</div> 
+  <div class="col border border-light center" id="a1"></div>
+  <div class="col border border-light center" id="a2"></div>
+   <div class="col border border-light center" id="a3"></div>
+    <div class="col border border-light center"id="a4"></div>
+     <div class="col border border-light center"id="a5"></div>
+      <div class="col border border-light center"id="a6"></div>
+       <div class="col border border-light center"id="a7"></div>
+</div>
+<div class="row row-no-padding padding-left padding-right" id="three">
+
+	 <div class="col border border-light center ">下午</div>
+  <div class="col border border-light center "id="p1"></div>
+  <div class="col border border-light center "id="p2"></div>
+   <div class="col border border-light center "id="p3"></div>
+    <div class="col border border-light center "id="p4" ></div>
+     <div class="col border border-light center "id="p5"></div>
+      <div class="col border border-light center "id="p6"></div>
+       <div class="col border border-light center "id="p7"></div>
+</div>
+<div class=" row row-no-padding padding-left padding-right" id="four">
+
+	 <div class="col border border-light center ">晚上</div>
+  <div class="col border border-light center "id="n1"></div>
+  <div class="col border border-light center "id="n2"></div>
+   <div class="col border border-light center " id="n3"></div>
+    <div class="col border border-light center " id="n4"></div>
+     <div class="col border border-light center "id="n5"></div>
+      <div class="col border border-light center "id="n6"></div>
+       <div class="col  border border-light center "id="n7"></div>
+</div>
 	</ion-content>
 </ion-view>

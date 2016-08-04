@@ -60,5 +60,8 @@ app.controller('PatientListCtrl', function($scope, $state, $stateParams, APPCONF
 	};
 
 	$scope.refresh();
+	$scope.addpatient = function(){
+        $state.go("patientadd");
+	};
 
 });
