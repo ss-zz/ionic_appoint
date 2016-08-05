@@ -61,7 +61,6 @@ a{
 	text-decoration: none;
 }
 .border{
-	display: inline;
 	border: 2px solid rgba(242, 242, 242, 1);
 }
 
