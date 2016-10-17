@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.commonservices', 'app.directives'], function($httpProvider){
+var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.commonservices', 'app.directives', 'templates'], function($httpProvider){
 
 	// Use x-www-form-urlencoded Content-Type
 	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -53,7 +53,7 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, $timeout, $ionicHistory, $cordovaToast, UTIL_USER, $ionicNavBarDelegate, $sqliteService, UTIL_DIALOG, MessageService) {
+.run(function($ionicPlatform, $rootScope, $state, $location, $timeout, $ionicHistory, $cordovaToast, UTIL_USER, $ionicNavBarDelegate, $sqliteService, MessageService) {
 
 	$ionicPlatform.ready(function() {
 	if (window.cordova && window.cordova.plugins) {
@@ -101,8 +101,6 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 			});
 		}, 1000 * 5);
 	}
-
-
 
 	//启动画面
 	if(navigator.splashscreen){
@@ -185,15 +183,22 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 })
 
 //自定义ionic配置
-app.config(function($ionicConfigProvider) {
+app.config(function($ionicConfigProvider, APPCONFIG, $urlRouterProvider) {
+
 	//tabs位置
 	$ionicConfigProvider.tabs.position("bottom");
 	//原生滚动
 	$ionicConfigProvider.scrolling.jsScrolling(false);
+	// 自定义模板预加载数目-web发布环境下节省资源
+	if(APPCONFIG.IS_WEB){
+		$ionicConfigProvider.templates.maxPrefetch(3);
+	}
+
 });
 
 //常量
 app.constant('APPCONFIG', {
+	IS_WEB: true,// 是否web发布（影响部分web不支持的功能）
 	//服务端地址
 	SERVER_URL_PRE: "http://localhost:8100/api",//浏览器调试
 	//SERVER_URL_PRE: "http://192.168.1.252:9401/api-mobile/api",//打包发布

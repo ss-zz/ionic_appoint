@@ -195,10 +195,16 @@ span{
 	border-top: 1px solid #eee;
 }
 .cs-select-item{
-	background-color: #fff;
 	line-height: 2.5em;
-	border: 1px solid #eee;
-	border-top: none;
+	text-align: center;
+	padding: 10px;
+}
+
+.popup-container .popup{
+	width: 80%;
+}
+.popup-container{
+	position: fixed;
 }
 
 .overflow{
@@ -354,3 +360,49 @@ p.text2 {
 .evaluate-select-item{
 	float: left;
 }
+/*自定义自动化-css3*/
+@-webkit-keyframes fadeIn {
+	0% {
+	opacity: 0; /*初始状态 透明度为0*/
+	}
+	100% {
+	opacity: 1; /*结尾状态 透明度为1*/
+	}
+}
+/*自定义toast*/
+.ag-toast{
+	position: fixed;
+	width: 60%;
+	text-align: center;
+	bottom: 150px;
+	z-index: 9999;
+	background-color: #867C7C;
+	margin: 0px auto;
+	border-radius: 20px;
+	line-height: 30px;
+	padding: 0px 20px;
+	color: #fff;
+	box-shadow: 2px 2px 3px #888888;
+	left: 0px;
+	right: 0px;
+
+	-webkit-animation-name: fadeIn; /*动画名称*/
+	-webkit-animation-duration: 1s; /*动画持续时间*/
+	-webkit-animation-iteration-count: 1; /*动画次数*/
+	-webkit-animation-delay: 0s; /*延迟时间*/
+}
+/*覆盖ionic默认样式>>>*/
+/*弹出框*/
+.popup-container.active .popup{
+	border-radius: 20px;
+}
+.popup-head,.popup-body{
+	border-bottom: 2px solid #FFFFFF;
+	padding-bottom: 5px;
+}
+.popup-buttons .button{
+	border-radius: 20px;
+	border: none;
+}
+/*覆盖ionic默认样式<<<*/
+

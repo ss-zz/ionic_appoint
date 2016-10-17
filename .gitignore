@@ -4,3 +4,5 @@
 platforms/
 www/js/build/
 /.project
+plugins/
+node_modules/
