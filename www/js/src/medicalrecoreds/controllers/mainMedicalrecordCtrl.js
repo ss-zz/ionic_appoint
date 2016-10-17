@@ -79,5 +79,10 @@ app.controller('MainMedicalrecordCtrl', function($scope, $stateParams, MedicalRe
 
 	//进入页面刷新
 	$scope.doRefresh();
+	
+	//切换就诊者刷新页面
+	$scope.change=function(targetState){
+		$state.go("patientList")
+	}
 
 })

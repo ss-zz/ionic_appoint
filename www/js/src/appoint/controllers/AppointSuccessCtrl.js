@@ -2,7 +2,7 @@
 app.controller('AppointSuccessCtrl',function($scope, $stateParams, $state,$ionicPopup,AppointService){
 	//获取预约信息
 	AppointService.getDetail($stateParams.appointId).then(function(data){
-		scope.appoint = data;
+		$scope.appoint = data;
 	});
 	//预约详情
 	$scope.goDatail=function(appoint){
