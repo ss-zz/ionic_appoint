@@ -176,6 +176,16 @@ angular.module('app.routes', [])
 		templateUrl: 'js/src/user/views/main_my.html',
 		controller: 'MainMyCtrl'
 	})
+	
+	//健康档案
+	.state('healthRecord', {
+		url: '/my',
+		cache: false,
+		templateUrl: 'js/src/user/views/health_record.html',
+		controller: 'HealthRecordCtrl'
+	})
+	
+	
 	//就诊人-列表
 	.state('patientList', {
 		url: '/patient-list',
