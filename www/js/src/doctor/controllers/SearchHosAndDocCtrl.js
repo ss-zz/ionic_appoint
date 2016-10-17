@@ -19,4 +19,5 @@ app.controller('SearchHosAndDocCtrl', function($scope, $stateParams, HospitalSer
 		});
 	};
 
+	$scope.search();
 });
