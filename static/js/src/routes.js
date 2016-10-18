@@ -16,7 +16,7 @@ angular.module('app.routes', [])
 
 	//主页-医院主站
 	.state('hospital', {
-		url: '/hospital',
+		url: '/hospital/{hosId}',
 		cache: false,
 		params: {hos: null, hosId: null},
 		templateUrl: 'hospital/views/detail.html',
@@ -123,7 +123,6 @@ angular.module('app.routes', [])
 	.state('medicalrecored', {
 		url: '/medicalrecored',
 		params: {patient: null, patientId: null},
-		cache: false,
 		templateUrl: 'medicalrecoreds/views/main_medicalrecored.html',
 		controller: 'MainMedicalrecordCtrl'
 	})

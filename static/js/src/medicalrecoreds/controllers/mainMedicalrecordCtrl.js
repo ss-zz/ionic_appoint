@@ -15,7 +15,7 @@ app.controller('MainMedicalrecordCtrl', function($scope, $stateParams, MedicalRe
 	UserService.getvatarByBase64().then(function(data){
 		$scope.imageBase64 = "data:image/jpeg;base64," + data;
 	});
-
+	
 	//刷新页面
 	$scope.doRefresh = function(cb){
 		$scope.hasmore = true;
@@ -80,9 +80,5 @@ app.controller('MainMedicalrecordCtrl', function($scope, $stateParams, MedicalRe
 	//进入页面刷新
 	$scope.doRefresh();
 	
-	//切换就诊者刷新页面
-	$scope.change=function(targetState){
-		$state.go("patientList")
-	}
 
 })
