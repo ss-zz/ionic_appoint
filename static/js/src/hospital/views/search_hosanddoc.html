@@ -1,6 +1,8 @@
 <ion-view title="找医院/医生">
 
-	<ion-content padding="true" class="has-header">
+	<ion-content padding="false" class="has-header">
+
+		<div class="row"></div>
 
 		<form class="list padding-horizontal">
 			<label class="item item-input">
@@ -9,22 +11,23 @@
 			</label>
 		</form>
 
-		<div class="list">
-			<a ui-sref="hospital({hos: hospital})" class="item" ng-repeat="hospital in hospitals">
+		<ion-list>
+			<ion-item ng-repeat="hospital in hospitals"
+			href="#/hospital/{{hospital.id}}" >
 				<h3>{{hospital.hosOrgName}}</h3>
 				<span>
 				 {{hospital.hosLevel}}
 				 {{hospital.hosType}}</span>
-			</a>
-		</div>
+			</ion-item>
+		</ion-list>
 
-		<div class="list">
-			<a href="#/doctor/{{doctor.id}}" class="item" ng-repeat="doctor in doctors">
+		<ion-list>
+			<ion-item ng-repeat="doctor in doctors"
+				ui-sref="doctorDetail({doctorId: doctor.id})" >
 				<h3>{{doctor.name}}</h3>
 				<span>{{doctor.hosOrgName}} {{doctor.deptName}} {{doctor.profeTitleDn}}</span>
-			</a>
-		</div>
-
+			</ion-item>
+		</ion-list>
 
 	</ion-content>
 </ion-view>
