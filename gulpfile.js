@@ -75,10 +75,10 @@ gulp.task('useref', function (done) {
 		;
 });
 // 监控
-gulp.task('watch', ['minify', 'templatecache'], function() {
-	gulp.watch(paths.src_js, ['minify']);
-	gulp.watch(paths.src_template, ['minify']);
-	gulp.watch(paths.src_img, ['minify']);
+gulp.task('watch', function() {
+	gulp.watch(paths.src_js, ['build']);
+	gulp.watch(paths.src_template, ['build']);
+	gulp.watch(paths.src_img, ['build']);
 });
 // 清空发布
 gulp.task('clean', function () {
