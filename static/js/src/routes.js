@@ -123,7 +123,6 @@ angular.module('app.routes', [])
 	.state('medicalrecored', {
 		url: '/medicalrecored',
 		params: {patient: null, patientId: null},
-		cache: false,
 		templateUrl: 'medicalrecoreds/views/main_medicalrecored.html',
 		controller: 'MainMedicalrecordCtrl'
 	})
