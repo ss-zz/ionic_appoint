@@ -187,8 +187,8 @@ app.config(function($ionicConfigProvider, APPCONFIG, $urlRouterProvider) {
 
 	//tabs位置
 	$ionicConfigProvider.tabs.position("bottom");
-	//原生滚动
-	$ionicConfigProvider.scrolling.jsScrolling(false);
+	//滚动
+	$ionicConfigProvider.scrolling.jsScrolling(true);
 	// 自定义模板预加载数目-web发布环境下节省资源
 	if(APPCONFIG.IS_WEB){
 		$ionicConfigProvider.templates.maxPrefetch(3);

@@ -14,6 +14,10 @@ ionic 版本mobile(未完全升级)
 
 	构建前使用，生成合并之后的文件(生成www目录，并生成相关文件)。
 
+* gulp pub
+
+	以web方式发布应用，在根目录下生成pub文件夹，并生成压缩文件。
+
 * ionic serve
 
 	开发时使用，用于在浏览器中进行调试。
@@ -94,6 +98,6 @@ ionic 版本mobile(未完全升级)
 * 下载ionic项目源代码。
 * 参考【样例一】安装依赖包、添加环境部分。
 * 修改api服务端的访问地址。【static/js/src/app.js文件中SERVER_URL_PRE地址。注意：修改代理地址无效】
-* 在项目根目录执行【gulp build】。
-* 直接将生成的www目录拷贝发布即可。
+* 在项目根目录执行【gulp pub】。
+* 直接将生成的pub目录下www.zip拷贝发布即可。
 
