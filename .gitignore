@@ -3,6 +3,7 @@
 
 platforms/
 www/
+pub/
 /.project
 plugins/
 node_modules/

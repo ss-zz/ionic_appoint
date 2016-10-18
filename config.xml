@@ -7,7 +7,7 @@
   <author email="you@example.com" href="http://sinosoft.com.com/">
 			Your Name Here
   </author>
-  <content src="build/index.html"/>
+  <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
