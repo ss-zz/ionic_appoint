@@ -45,7 +45,7 @@
 		</div>
 
 		<ion-list>
-			<ion-item ng-repeat="hospital in items" ng-click="go(hospital)" >
+			<ion-item ng-repeat="hospital in items" href="#hospital/{{hospital.hosId}}" >
 				<span>{{hospital.hosOrgName}}</span>
 				<br/>
 				<span>{{hospital.hosLevel}} {{hospital.hosType}}</span>
