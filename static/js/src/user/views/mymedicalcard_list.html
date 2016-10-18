@@ -6,28 +6,18 @@
             pulling-text="下拉刷新..."
             on-refresh="refresh()">
         </ion-refresher>
-
-    <ion-item ng-repeat="card in items" ng-click="go(card)">
-    <h2>{{card.hosOrgName}}</h2>
-    <p>就医卡号： {{card.cardno}}</p>
-    <ion-option-button class="button-positive"
-                       ng-click="share(item)">
-      Share
-    </ion-option-button>
-    <ion-option-button class="button-info"
-                       ng-click="edit(item)">
-      Edit
-    </ion-option-button>
-    <ion-delete-button class="ion-minus-circled"
-                       ng-click="items.splice($index, 1)">
-    </ion-delete-button>
-    <ion-reorder-button class="ion-navicon"
-                        on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-    </ion-reorder-button>
-
-  </ion-item>
+	<ion-list >
+	    <ion-item ng-repeat="card in items" ng-click="go(card)" show-reorder="true" class="item-remove-animate">
+		    <h2>{{card.hosOrgName}}</h2>
+		    <p>就医卡号： {{card.cardno}}</p>
+			<ion-option-button class="button-calm">
+            	解绑
+          	</ion-option-button>
+	
+	  	</ion-item>
+    </ion-list>
         <div class="nomore padding" ng-if="!hasmore">
-            没有更多
+        		没有更多
         </div>
         <div class="addcard padding has-footer" >
         	<button class="button button-balanced button-block" ng-click="addcard();">+ 添加就医卡</button>
