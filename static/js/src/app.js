@@ -200,8 +200,8 @@ app.config(function($ionicConfigProvider, APPCONFIG, $urlRouterProvider) {
 app.constant('APPCONFIG', {
 	IS_WEB: true,// 是否web发布（影响部分web不支持的功能）
 	//服务端地址
-	SERVER_URL_PRE: "http://localhost:8100/api",//浏览器调试
-	//SERVER_URL_PRE: "http://192.168.1.252:9401/api-mobile/api",//打包发布
+	//SERVER_URL_PRE: "http://localhost:8100/api",//浏览器调试
+	SERVER_URL_PRE: "http://192.168.1.252:9401/api-mobile/api",//打包发布
 	//分页加载每页参数
 	PAGE_SIZE: 10,
 	//本地数据库
