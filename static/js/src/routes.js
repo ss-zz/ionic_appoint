@@ -14,11 +14,9 @@ angular.module('app.routes', [])
 		controller: 'MainIndexCtrl'
 	})
 
-	//主页-医院主站
-	.state('hospital', {
-		url: '/hospital/{hosId}',
-		cache: false,
-		params: {hos: null, hosId: null},
+	//医院详情
+	.state('hospitalDetail', {
+		url: '/hospital/:hosId',
 		templateUrl: 'hospital/views/detail.html',
 		controller: 'HosDetailCtrl'
 	})
@@ -75,14 +73,13 @@ angular.module('app.routes', [])
 	.state('hosPriceSearch', {
 		url: '/hosPriceSearch',
 		params: {hos: null},
-		cache: false,
 		templateUrl: 'hospital/views/hos_price_search.html',
 		controller: "HosPriceSearchCtrl"
 	})
 	//医院切换、医院选择页面
 	.state('hosSearch', {
-		url: '/hosSearch',
-		params: {targetState: "hospital"},
+		url: '/hosSearch/:targetState',
+		params: {targetState: "hospitalDetail"},
 		templateUrl: 'hospital/views/search_hos.html',
 		controller: "SearchHosCtrl"
 	})
@@ -91,7 +88,6 @@ angular.module('app.routes', [])
 	.state('drugPriceSearch', {
 		url: '/drugPriceSearch',
 		params: {hos: null},
-		cache: false,
 		templateUrl: 'hospital/views/search_drugprice.html',
 		controller: "DrugPriceSearchCtrl"
 	})
@@ -99,7 +95,6 @@ angular.module('app.routes', [])
 	.state('servItemPriceSearch', {
 		url: '/servItemPriceSearch',
 		params: {hos: null},
-		cache: false,
 		templateUrl: 'hospital/views/search_servitemprice.html',
 		controller: "ServItemPriceSearchCtrl"
 	})
@@ -121,8 +116,7 @@ angular.module('app.routes', [])
 
 	//主页-记录
 	.state('medicalrecored', {
-		url: '/medicalrecored',
-		params: {patient: null, patientId: null},
+		url: '/medicalrecored/:patientId',
 		templateUrl: 'medicalrecoreds/views/main_medicalrecored.html',
 		controller: 'MainMedicalrecordCtrl'
 	})
@@ -171,15 +165,13 @@ angular.module('app.routes', [])
 	//主页-我的
 	.state('my', {
 		url: '/my',
-		cache: false,
 		templateUrl: 'user/views/main_my.html',
 		controller: 'MainMyCtrl'
 	})
 
 	//健康档案
 	.state('healthRecord', {
-		url: '/my',
-		cache: false,
+		url: '/healthRecord',
 		templateUrl: 'user/views/health_record.html',
 		controller: 'HealthRecordCtrl'
 	})
@@ -189,7 +181,6 @@ angular.module('app.routes', [])
 	.state('patientList', {
 		url: '/patient-list',
 		params: {targetState: "patientEdit",otherParams:null},
-		cache: false,
 		templateUrl: 'user/views/patient_list.html',
 		controller: 'PatientListCtrl'
 	})
@@ -203,7 +194,6 @@ angular.module('app.routes', [])
 	//添加就诊人
 	.state('patientadd', {
 		url: '/patient-add',
-		//params: {patient: null},
 		templateUrl: 'user/views/add_patient.html',
 		controller: 'PatientEditCtrl'
 	})
@@ -211,7 +201,6 @@ angular.module('app.routes', [])
 	.state('mymedicalcardlist', {
 		url: '/mymedicalcardlist',
 		params: {targetState: "cardpay",otherParams:null},
-		cache: false,
 		templateUrl: 'user/views/mymedicalcard_list.html',
 		controller: 'MyCardCtrl'
 	})
@@ -219,7 +208,6 @@ angular.module('app.routes', [])
 	.state('cardpay', {
 		url: '/cardpay',
 		params: {card: null},
-		cache:false,
 		templateUrl: 'user/views/cardpay.html',
 		controller: 'CardpayCtrl'
 	})
@@ -269,7 +257,6 @@ angular.module('app.routes', [])
 	//消息列表页
 	.state('messagelist', {
 		url: '/messages',
-		cache: false,
 		templateUrl: 'message/views/messages.html',
 		controller: 'MessagesListCtrl'
 	})

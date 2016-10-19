@@ -20,7 +20,7 @@ app.controller('SearchHosCtrl', function($scope, $state, $stateParams, APPCONFIG
 			if(hospital){
 				hospital.id = hospital.hosId;
 			}
-			$state.go(targetState, {hos: hospital}, {reload: true});
+			$state.go(targetState, {hos: hospital, hosId: hospital.id}, {reload: true});
 		};
 	}
 
