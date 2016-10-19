@@ -47,6 +47,16 @@ app.controller('MyCardCtrl', function($scope, $state, $stateParams, APPCONFIG, M
 		}
 
 	}
+	//解绑就医卡
+	$scope.undindCard=function(cardno){
+		MyCardService.undindCard({
+				cardno: cardno
+		})
+		.then(function(data){
+			console.log(data);
+			$scope.refresh();
+		});
+	}
 
 	//加载更多
 	$scope.loadMore = function(){

@@ -30,7 +30,15 @@ app.service('MyCardService', function(UTIL_HTTP){
 				    tAppointUserId:tAppointUserId
 				}
 			});
-		}
+		},
+	    
+		//解绑就医卡
+		undindCard: function(cardno){
+			return UTIL_HTTP.get({
+				url: "/opcard/unbind",
+				data: cardno
+			});
+		},
 	
 	};
 		

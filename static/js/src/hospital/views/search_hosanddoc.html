@@ -10,7 +10,7 @@
 		</form>
 
 		<div class="list">
-			<a ui-sref="hospital({hos: hospital})" class="item" ng-repeat="hospital in hospitals">
+			<a href="#hospital/{{hospital.hosId}}" class="item" ng-repeat="hospital in hospitals">
 				<h3>{{hospital.hosOrgName}}</h3>
 				<span>
 				 {{hospital.hosLevel}}
