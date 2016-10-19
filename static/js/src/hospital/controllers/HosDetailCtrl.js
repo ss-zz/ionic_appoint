@@ -1,6 +1,8 @@
 //医院-详情
 app.controller('HosDetailCtrl', function($scope, $stateParams, HospitalService) {
 
+	console.dir($stateParams.hos);
+
 	if($stateParams.hos){//传入医院对象
 		//$scope.hos = $stateParams.hos;
 		//$scope.hos.hosId = $scope.hos.id;

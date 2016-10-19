@@ -146,7 +146,7 @@ angular.module('app.commonservices', [])
 })
 
 //公共-用户状态
-.factory('UTIL_USER', function($q, SPEDATA){
+.factory('UTIL_USER', function($q, SPEDATA, $ionicHistory){
 
 	var userInfoKey = "user_info";
 
@@ -213,11 +213,17 @@ angular.module('app.commonservices', [])
 		},
 		//设置用户信息
 		setUserInfo: function(info){
-			SPEDATA.set(userInfoKey, JSON.stringify(info));
+			var deferred = $q.defer();
+			SPEDATA.set(userInfoKey, JSON.stringify(info))
+				.then(function(){
+					deferred.resolve();
+				});;
+			return deferred.promise;
 		},
 		//用户登出
 		logout: function(){
 			SPEDATA.del(userInfoKey);
+			$ionicHistory.clearCache();
 		}
 	};
 })
@@ -303,20 +309,30 @@ angular.module('app.commonservices', [])
 		},
 		//设置数据
 		set: function(key, value){
+			var deferred = $q.defer();
 			//删除
 			$sqliteService.executeSql(
 				"delete from spedata where key = ? ", [key])
 			.then(function(){
 				//插入
 				$sqliteService.executeSql(
-					"insert into spedata (key, value) values (?, ?) ", [key, value]);
+					"insert into spedata (key, value) values (?, ?) ", [key, value])
+					.then(function(){
+						deferred.resolve();
+					});;
 			});
+			return deferred.promise;
 		},
 		//删除数据
 		del: function(key){
+			var deferred = $q.defer();
 			//删除
 			$sqliteService.executeSql(
-				"delete from spedata where key = ? ", [key]);
+				"delete from spedata where key = ? ", [key])
+			.then(function(){
+				deferred.resolve();
+			});
+			return deferred.promise;
 		}
 	};
 })

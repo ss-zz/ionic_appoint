@@ -53,66 +53,66 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, $timeout, $ionicHistory, $cordovaToast, UTIL_USER, $ionicNavBarDelegate, $sqliteService, MessageService) {
+.run(function($ionicPlatform, $rootScope, $state, $location, $timeout, $ionicHistory, $cordovaToast, UTIL_USER, $ionicNavBarDelegate, $sqliteService) {
+
+	$rootScope.EXT = {
+		user: {
+			isLogin: null
+		}
+	};
 
 	$ionicPlatform.ready(function() {
-	if (window.cordova && window.cordova.plugins) {
-		cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-		cordova.plugins.Keyboard.disableScroll(true);
+		if (window.cordova && window.cordova.plugins) {
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+			cordova.plugins.Keyboard.disableScroll(true);
 
-		cordova.plugins.backgroundMode.setDefaults({ text:'百姓医院'});
-		cordova.plugins.backgroundMode.enable();
+			cordova.plugins.backgroundMode.setDefaults({ text:'百姓医院'});
+			cordova.plugins.backgroundMode.enable();
 
-		//进入后台
-		cordova.plugins.backgroundMode.onactivate = function () {
-			clearTimeout(timeOutMessage);
-			refreshMessage(true);
-		};
-		//进入前台
-		cordova.plugins.backgroundMode.ondeactivate  = function () {
-			clearTimeout(timeOutMessage);
-			refreshMessage(false);
-		};
-	}
-	if (window.StatusBar) {
-		// org.apache.cordova.statusbar required
-		StatusBar.styleDefault();
-	}
+			//进入后台
+			cordova.plugins.backgroundMode.onactivate = function () {
+				clearTimeout(timeOutMessage);
+				refreshMessage(true);
+			};
+			//进入前台
+			cordova.plugins.backgroundMode.ondeactivate  = function () {
+				clearTimeout(timeOutMessage);
+				refreshMessage(false);
+			};
+		}
+		if (window.StatusBar) {
+			// org.apache.cordova.statusbar required
+			StatusBar.styleDefault();
+		}
 
-	//初始化数据库
-	$sqliteService.db();
+		//初始化数据库
+		$sqliteService.db();
 
-	//刷新消息
-	//refreshMessage(false);
-	var timeOutMessage;
-	function refreshMessage(isBack){
-		console.dir("刷新消息" + isBack);
-		timeOutMessage = setTimeout(function () {
-			MessageService.refreshServerMessages().then(function(message){
-				if(message && isBack){
-					cordova.plugins.backgroundMode.configure({
-						text: message
-					});
+		//启动画面
+		if(navigator.splashscreen){
+			navigator.splashscreen.hide();
+		}
+
+		//后退按钮事件
+		$ionicPlatform.registerBackButtonAction(function (e) {
+			//判断处于哪个页面时双击退出
+			if ($location.path() == '/index') {
+				if ($rootScope.backButtonPressedOnceToExit) {
+					ionic.Platform.exitApp();
+				} else {
+					$rootScope.backButtonPressedOnceToExit = true;
+					$cordovaToast.showShortTop('再按一次退出系统');
+					setTimeout(function () {
+						$rootScope.backButtonPressedOnceToExit = false;
+					}, 2000);
 				}
-				refreshMessage(isBack);
-			}).then(function(){
-				con
-				refreshMessage(isBack);
-			});
-		}, 1000 * 5);
-	}
-
-	//启动画面
-	if(navigator.splashscreen){
-		navigator.splashscreen.hide();
-	}
-
-	//后退按钮事件
-	$ionicPlatform.registerBackButtonAction(function (e) {
-		//判断处于哪个页面时双击退出
-		if ($location.path() == '/index') {
-			if ($rootScope.backButtonPressedOnceToExit) {
-				ionic.Platform.exitApp();
+			}
+			else if ($ionicHistory.backView()) {
+				if ($cordovaKeyboard.isVisible()) {
+					$cordovaKeyboard.close();
+				} else {
+					$ionicHistory.goBack();
+				}
 			} else {
 				$rootScope.backButtonPressedOnceToExit = true;
 				$cordovaToast.showShortTop('再按一次退出系统');
@@ -120,23 +120,14 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 					$rootScope.backButtonPressedOnceToExit = false;
 				}, 2000);
 			}
-		}
-		else if ($ionicHistory.backView()) {
-			if ($cordovaKeyboard.isVisible()) {
-				$cordovaKeyboard.close();
-			} else {
-				$ionicHistory.goBack();
-			}
-		} else {
-			$rootScope.backButtonPressedOnceToExit = true;
-			$cordovaToast.showShortTop('再按一次退出系统');
-			setTimeout(function () {
-				$rootScope.backButtonPressedOnceToExit = false;
-			}, 2000);
-		}
-		e.preventDefault();
-		return false;
-	}, 101);
+			e.preventDefault();
+			return false;
+		}, 101);
+
+		// 初始化用户登录状态
+		UTIL_USER.isLogin().then(function(data){
+			$rootScope.EXT.user.isLogin = data;
+		});
 
 	});
 
@@ -156,21 +147,24 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 	"drugAlert"
 	];
 	//监听页面切换-开始-判断页面是否需要登录
-	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+	$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams){
+
 		if(toState.name == 'login') return;// 如果是进入登录界面则允许
+		if(fromState.name == '') return;
+
 		for(var idx in filterStates){
 			var filterState = filterStates[idx];
 			if(filterState == toState.name){
-				// 如果用户不存在
-				UTIL_USER.isLogin().then(function(isLogin){
-					if(!isLogin){
-						event.preventDefault();// 取消默认跳转行为
-						$state.go("login",
-							{from:fromState.name, "fromParams": fromParams,
-							to: toState.name, "toParams": toParams});//跳转到登录界面
-					}
-				});
-				break;
+				var isLogin = $rootScope.EXT.user.isLogin;
+				if(!isLogin){
+					e.preventDefault();
+					$state.go(//跳转到登录界面
+						"login",
+						{from: fromState.name,
+						fromParams: fromParams,
+						to: toState.name,
+						toParams: toParams});
+				}
 			}
 		}
 	});
@@ -189,10 +183,6 @@ app.config(function($ionicConfigProvider, APPCONFIG, $urlRouterProvider) {
 	$ionicConfigProvider.tabs.position("bottom");
 	//原生滚动
 	$ionicConfigProvider.scrolling.jsScrolling(true);
-	// 自定义模板预加载数目-web发布环境下节省资源
-	if(APPCONFIG.IS_WEB){
-		$ionicConfigProvider.templates.maxPrefetch(3);
-	}
 
 });
 

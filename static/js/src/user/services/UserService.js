@@ -1,5 +1,5 @@
 //用户
-app.service('UserService', function(UTIL_HTTP, UTIL_USER, $q){
+app.service('UserService', function(UTIL_HTTP, UTIL_USER, $q, $rootScope, $ionicHistory){
 	return {
 		//登录
 		login : function(params){
@@ -10,6 +10,10 @@ app.service('UserService', function(UTIL_HTTP, UTIL_USER, $q){
 			})
 			.then(function(data){
 				if(data){
+					$rootScope.EXT.user.isLogin = true;
+
+					$ionicHistory.clearCache();
+
 					//计算过期时间
 					var expire = data.expire;
 					var expireDate = new Date();
@@ -18,9 +22,13 @@ app.service('UserService', function(UTIL_HTTP, UTIL_USER, $q){
 						id: data.userId,
 						token: data.token,
 						expire: expireDate
+					})
+					.then(function(){
+						deferred.resolve();
 					});
+				}else{
+					deferred.resolve();
 				}
-				deferred.resolve();
 			});
 			return deferred.promise;
 		},
@@ -31,6 +39,7 @@ app.service('UserService', function(UTIL_HTTP, UTIL_USER, $q){
 				UTIL_HTTP.post({
 					url: "/logout/" + token
 				}).then(function(data){
+					$rootScope.EXT.user.isLogin = false;
 					UTIL_USER.logout();
 					deferred.resolve();
 				});
