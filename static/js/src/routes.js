@@ -73,6 +73,7 @@ angular.module('app.routes', [])
 	.state('hosPriceSearch', {
 		url: '/hosPriceSearch',
 		params: {hos: null},
+		cache: false,
 		templateUrl: 'hospital/views/hos_price_search.html',
 		controller: "HosPriceSearchCtrl"
 	})
@@ -88,6 +89,7 @@ angular.module('app.routes', [])
 	.state('drugPriceSearch', {
 		url: '/drugPriceSearch',
 		params: {hos: null},
+		cache: false,
 		templateUrl: 'hospital/views/search_drugprice.html',
 		controller: "DrugPriceSearchCtrl"
 	})
@@ -95,6 +97,7 @@ angular.module('app.routes', [])
 	.state('servItemPriceSearch', {
 		url: '/servItemPriceSearch',
 		params: {hos: null},
+		cache: false,
 		templateUrl: 'hospital/views/search_servitemprice.html',
 		controller: "ServItemPriceSearchCtrl"
 	})

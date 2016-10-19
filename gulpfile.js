@@ -114,5 +114,7 @@ gulp.task('zip', function () {
 });
 // web方式发布
 gulp.task('pub', function () {
-	return runSequence('build', 'zip');
+	return runSequence(
+		"minifyJs", "minifyImg", "copyFont",
+		"templatecache", "useref", 'cleanTemp', 'zip');
 });
