@@ -35,6 +35,7 @@ var paths = {
 	src_js: ['static/js/src/**/*.js'],
 	src_css: ['static/css/**/*.css'],
 	src_img: ['static/img/**/*'],
+	src_pub: ['static/pub/**/*'],
 	src_font: ['static/lib/ionic/fonts/*.*'],
 	src_template: ['static/js/src/**/*.html'],
 	src_index_html: 'static/index.html',
@@ -46,6 +47,8 @@ gulp.task('default', ['build']);
 
 // 压缩所有相关文件
 gulp.task('build', function (){
+	gulp.src(paths.src_pub)
+		.pipe(gulp.dest(paths.build + "/pub"));
 	return runSequence(
 		"minifyJs", "minifyImg", "copyFont",
 		"templatecache", "useref", 'cleanTemp');
