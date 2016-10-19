@@ -1,5 +1,5 @@
 //就医卡列表
-app.controller('MyCardCtrl', function($scope, $state, $stateParams, APPCONFIG, MyCardService) {
+app.controller('MyCardCtrl', function($scope, $state, $stateParams, APPCONFIG, MyCardService, $ionicPopup) {
 
 	//是否有更多
 	$scope.hasmore = true;
@@ -36,7 +36,7 @@ app.controller('MyCardCtrl', function($scope, $state, $stateParams, APPCONFIG, M
 				offset += APPCONFIG.PAGE_SIZE;
 				if(isReload){//刷新
 					$scope.items = data;
-				
+
 				}else{//加载更多
 					$scope.items = $scope.items.concat(data);
 				}
@@ -46,6 +46,23 @@ app.controller('MyCardCtrl', function($scope, $state, $stateParams, APPCONFIG, M
 			});
 		}
 
+	}
+	//解绑就医卡
+	$scope.undindCard=function(cardno){
+		$ionicPopup.confirm({
+			title: '确认解绑？',
+			template: '解绑后可重新绑定。'
+		}).then(function(res) {
+			if(res){
+				MyCardService.undindCard({
+					cardno: cardno
+				})
+				.then(function(data){
+					console.log(data);
+					$scope.refresh();
+				});
+			}
+		});
 	}
 
 	//加载更多
@@ -62,7 +79,7 @@ app.controller('MyCardCtrl', function($scope, $state, $stateParams, APPCONFIG, M
 		loadData(true);
 	};
 	$scope.refresh();
-	
+
 	//添加就医卡
 	$scope.addcard = function(){
         $state.go("addcard");

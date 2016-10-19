@@ -52,4 +52,30 @@ app.controller('MessagesListCtrl', function($scope, $state, $stateParams, APPCON
 
 	$scope.refresh();
 
+	// 查看详情
+	$scope.viewDetail = function(message){
+		//若状态为未读、则更新为已读
+		if(message.state == "0"){
+			message.state = "1";
+			MessageService.updateMessageStateRead(message.id);
+		}
+		$state.go("messagedetail", {message: message});
+	};
+
+	// 删除消息
+	$scope.delMsg = function(idx, message){
+		MessageService.deleteLocalMsg(message.id)
+		.then(function(data){
+			var items = $scope.items;
+			if(items){
+				items.splice(idx, 1);
+			}
+		});
+	};
+	// 标记为已读
+	$scope.flagRead = function(message){
+		message.state = "1";
+		MessageService.updateMessageStateRead(message.id);
+	};
+
 });

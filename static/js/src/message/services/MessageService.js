@@ -75,6 +75,11 @@ app.service('MessageService',
 		updateMessageStateRead: function(id){
 			var sql = "update message set state = ? where id = ? ";
 			return $sqliteService.executeSql(sql, [MESSAGE_STATE_READ, id]);
+		},
+		//删除本地消息
+		deleteLocalMsg: function(id){
+			var sql = "delete from message where id = ? ";
+			return $sqliteService.executeSql(sql, [id]);
 		}
 	};
 

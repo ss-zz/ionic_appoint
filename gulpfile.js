@@ -25,10 +25,13 @@ var cache = require('gulp-cache');
 var ngAnnotate = require('gulp-ng-annotate');
 // 清除调试信息
 var stripDebug = require('gulp-strip-debug');
+// 打压缩包
+var zip = require('gulp-zip');
 
 // 配置项
 var paths = {
 	build: 'www',
+	pub: 'pub',
 	src_js: ['static/js/src/**/*.js'],
 	src_css: ['static/css/**/*.css'],
 	src_img: ['static/img/**/*'],
@@ -40,7 +43,7 @@ var paths = {
 };
 
 // 默认任务
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build']);
 
 // 压缩所有相关文件
 gulp.task('build', function (){
@@ -93,12 +96,26 @@ gulp.task('watch', function() {
 	gulp.watch(paths.src_js, ['build']);
 	gulp.watch(paths.src_template, ['build']);
 	gulp.watch(paths.src_img, ['build']);
+	gulp.watch(paths.src_index_html, ['build']);
 });
 // 清空发布
 gulp.task('clean', function () {
-	gulp.src(paths.build, {read: false}).pipe(clean());
+	return gulp.src(paths.build, {read: false})
+		.pipe(clean());
 });
 // 删除临时文件-自定义
 gulp.task('cleanTemp', function () {
-	gulp.src(paths.www_temp, {read: false}).pipe(clean());
+	return gulp.src(paths.www_temp, {read: false})
+		.pipe(clean());
+});
+// www目录压缩
+gulp.task('zip', function () {
+	return gulp.src(paths.build + "/**/*")
+		.pipe(zip('www.zip'))
+		.pipe(gulp.dest(paths.pub))
+		;
+});
+// web方式发布
+gulp.task('pub', function () {
+	return runSequence('build', 'zip');
 });
