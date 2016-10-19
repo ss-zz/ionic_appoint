@@ -50,6 +50,13 @@ angular.module('app.routes', [])
 		templateUrl: 'hospital/views/hos_nav.html',
 		controller: "HosNavCtrl"
 	})
+	//地图导航
+	.state('hosMap',{
+		url: '/hosMap',
+		params: {address: null},
+		templateUrl: 'hospital/views/hos_map.html',
+		controller: "HosMapCtrl"
+	})
 	//医院叫号跟踪
 	.state('hosCallNo', {
 		url: '/hosCallNo',
