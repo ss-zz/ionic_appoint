@@ -1,5 +1,5 @@
 //我的-首页
-app.controller('MainMyCtrl', function($scope, UserService, UTIL_USER, MessageService, $cordovaCamera, UTIL_DIALOG, $state) {
+app.controller('MainMyCtrl', function($scope, UserService, UTIL_USER, MessageService, $cordovaCamera, UTIL_DIALOG, $state, APPCONFIG) {
 
 	//用户是否登录
 	UTIL_USER.isLogin().then(function(data){
@@ -25,7 +25,11 @@ app.controller('MainMyCtrl', function($scope, UserService, UTIL_USER, MessageSer
 
 	//上传头像
 	$scope.clickTop = function(){
+
 		if($scope.isLogin){
+
+			if(APPCONFIG.IS_WEB) return;
+
 			//https://www.npmjs.com/package/cordova-plugin-camera#module_camera.getPicture
 			var options = {
 				quality: 50,

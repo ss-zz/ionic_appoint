@@ -93,6 +93,7 @@ gulp.task('watch', function() {
 	gulp.watch(paths.src_js, ['build']);
 	gulp.watch(paths.src_template, ['build']);
 	gulp.watch(paths.src_img, ['build']);
+	gulp.watch(paths.src_index_html, ['build']);
 });
 // 清空发布
 gulp.task('clean', function () {
