@@ -194,17 +194,16 @@ span{
 	right: 0px;
 	border-top: 1px solid #eee;
 }
-.cs-select-item{
+.cs-select-item-first{
 	line-height: 2.5em;
 	text-align: center;
 	padding: 10px;
 }
-
-.popup-container .popup{
-	width: 80%;
-}
-.popup-container{
-	position: fixed;
+.cs-select-item{
+	line-height: 2.5em;
+	text-align: center;
+	padding: 10px;
+	border-top: 1px solid #FDFDFD;
 }
 
 .overflow{
@@ -395,14 +394,31 @@ p.text2 {
 /*弹出框*/
 .popup-container.active .popup{
 	border-radius: 20px;
+	box-shadow: 2px 2px 3px #FFF;
 }
 .popup-head,.popup-body{
 	border-bottom: 2px solid #FFFFFF;
 	padding-bottom: 5px;
 }
+.popup-body{
+	min-height: 100px;
+}
 .popup-buttons .button{
 	border-radius: 20px;
 	border: none;
+}
+.popup-container .popup{
+	width: 80%;
+}
+.popup-container{
+	position: fixed;
+}
+.popup-title{
+	font-size: 1.8em;
+	text-align: left;
+	margin-left: 30px;
+	border-left: 3px solid #33cd5f;
+	padding-left: 20px;
 }
 /*覆盖ionic默认样式<<<*/
 

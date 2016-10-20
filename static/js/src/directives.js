@@ -52,7 +52,7 @@ angular.module('app.directives', [])
 						scope: scope,
 						buttons: [
 							{text: '关闭',
-							type: 'button-default',
+							type: 'button-assertive',
 							onTap: function(e) {
 								scope.showSelect = !scope.showSelect
 								scope.closePopup();
