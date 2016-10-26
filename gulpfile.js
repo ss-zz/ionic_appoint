@@ -47,10 +47,8 @@ gulp.task('default', ['build']);
 
 // 压缩所有相关文件
 gulp.task('build', function (){
-	gulp.src(paths.src_pub)
-		.pipe(gulp.dest(paths.build + "/pub"));
 	return runSequence(
-		"minifyJs", "minifyImg", "copyFont",
+		"minifyJs", "minifyImg", "copyFont", 'copyPub',
 		"templatecache", "useref", 'cleanTemp');
 });
 // js 合并压缩
@@ -74,6 +72,12 @@ gulp.task('minifyImg', function (done){
 gulp.task('copyFont', function (done){
 	return gulp.src(paths.src_font)
 		.pipe(gulp.dest(paths.build + "/fonts"))
+		;
+});
+// 拷贝pub目录（其它资源文件）
+gulp.task('copyPub', function (done){
+	return gulp.src(paths.src_pub)
+		.pipe(gulp.dest(paths.build + "/pub"));
 		;
 });
 // 模板文件压缩
@@ -118,6 +122,6 @@ gulp.task('zip', function () {
 // web方式发布
 gulp.task('pub', function () {
 	return runSequence(
-		"minifyJs", "minifyImg", "copyFont",
+		"minifyJs", "minifyImg", "copyFont", 'copyPub',
 		"templatecache", "useref", 'cleanTemp', 'zip');
 });

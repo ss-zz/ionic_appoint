@@ -189,10 +189,15 @@ app.config(function($ionicConfigProvider, APPCONFIG, $urlRouterProvider) {
 //常量
 app.constant('APPCONFIG', {
 	IS_WEB: true,// 是否web发布（影响部分web不支持的功能）
+
 	//服务端地址
-	SERVER_URL_PRE: "http://localhost:8100/api",//浏览器调试
-	//SERVER_URL_PRE: "http://192.168.1.252:9401/api-mobile/api",//打包发布
-	//分页加载每页参数
+	// 本地
+	//SERVER_URL_PRE: "http://localhost:8100/api",
+	// zz
+	//SERVER_URL_PRE: "http://192.168.1.252:9401/api-mobile/api",
+	// bj
+	SERVER_URL_PRE: "http://119.61.64.104:8777/api-mobile/api",
+
 	PAGE_SIZE: 10,
 	//本地数据库
 	DB_FILE: "appoint.db"
