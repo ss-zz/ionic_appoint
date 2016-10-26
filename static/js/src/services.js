@@ -172,16 +172,12 @@ angular.module('app.commonservices', [])
 		//是否登录
 		isLogin: function(){
 			var deferred = $q.defer();
-			getUserInfo("expire").then(function(expire){
+			getUserInfo("token").then(function(token){
 				var isLogin = false;
-				if(!expire){
+				if(!token){
 					isLogin = false;
 				}else{
-					if(new Date(expire) <= new Date().getTime()){
-						isLogin = false;
-					}else{
-						isLogin = true;
-					}
+					isLogin = true;
 				}
 				deferred.resolve(isLogin);
 			});

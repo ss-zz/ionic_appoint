@@ -53,14 +53,30 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, $timeout, $ionicHistory, $cordovaToast, UTIL_USER, $ionicNavBarDelegate, $sqliteService) {
+.run(function($ionicPlatform, $rootScope, $state, $location, $timeout, $ionicHistory, $cordovaToast, UTIL_USER, $ionicNavBarDelegate, $sqliteService,APPCONFIG) {
 
 	$rootScope.EXT = {
 		user: {
 			isLogin: null
 		}
 	};
-
+	//接收页面传来的参数
+	var request =
+	{
+    	QueryString : function(val){
+	    	var uri = window.location.search;
+	    	var re = new RegExp(val+ "=([^&?]*)", "ig");
+	    	return ( (uri.match(re)) ?(uri.match(re)[0].substr(val.length+1)):null);
+    	}
+	};
+	var token= decodeURI(request.QueryString("token"));
+	if(APPCONFIG.IS_WEB&&token){
+		$rootScope.EXT.user.isLogin=true;
+		UTIL_USER.setUserInfo({
+			token: token,
+			expire: 604800
+		});
+	}
 	$ionicPlatform.ready(function() {
 		if (window.cordova && window.cordova.plugins) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -125,9 +141,11 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 		}, 101);
 
 		// 初始化用户登录状态
-		UTIL_USER.isLogin().then(function(data){
-			$rootScope.EXT.user.isLogin = data;
-		});
+		if(!APPCONFIG.IS_WEB){
+			UTIL_USER.isLogin().then(function(data){
+				$rootScope.EXT.user.isLogin = data;
+			});
+		}
 
 	});
 
