@@ -53,31 +53,28 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, $timeout, $ionicHistory, $cordovaToast, UTIL_USER, $ionicNavBarDelegate, $sqliteService,APPCONFIG) {
+.run(function($ionicPlatform, $rootScope, $state,
+	 $location, $timeout, $ionicHistory,
+	 $cordovaToast, UTIL_USER, UTIL_URL,
+	 $ionicNavBarDelegate, $sqliteService,APPCONFIG) {
 
 	$rootScope.EXT = {
 		user: {
 			isLogin: null
 		}
 	};
-	//接收页面传来的参数
-	var request =
-	{
-    	QueryString : function(val){
-	    	var uri = window.location.search;
-	    	var re = new RegExp(val+ "=([^&?]*)", "ig");
-	    	return ( (uri.match(re)) ?(uri.match(re)[0].substr(val.length+1)):null);
-    	}
-	};
-	var token= decodeURI(request.QueryString("token"));
-	if(APPCONFIG.IS_WEB&&token){
-		$rootScope.EXT.user.isLogin=true;
-		UTIL_USER.setUserInfo({
-			token: token,
-			expire: 604800
-		});
-	}
 	$ionicPlatform.ready(function() {
+
+		//接收页面传来的token
+		var token= UTIL_URL.getParamsFromUrl("token");
+		if(APPCONFIG.IS_WEB && token){
+			$rootScope.EXT.user.isLogin=true;
+			UTIL_USER.setUserInfo({
+				token: token,
+				expire: 604800
+			});
+		}
+
 		if (window.cordova && window.cordova.plugins) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			cordova.plugins.Keyboard.disableScroll(true);
@@ -151,7 +148,7 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 
 	//需要登录的页面
 	var filterStates = [
-	"messagelist",
+	"my",
 	"medicalrecored",
 	"medicalrecoredDetail",
 	"medicalrecoredPre",
@@ -167,22 +164,31 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'app.routes', 'app.common
 	//监听页面切换-开始-判断页面是否需要登录
 	$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams){
 
-		if(toState.name == 'login') return;// 如果是进入登录界面则允许
+		if(toState.name == 'login' || toState.name == 'notlogin')
+			return;// 如果是进入登录界面则允许
 		if(fromState.name == '') return;
 
 		for(var idx in filterStates){
 			var filterState = filterStates[idx];
 			if(filterState == toState.name){
-				var isLogin = $rootScope.EXT.user.isLogin;
-				if(!isLogin){
-					e.preventDefault();
-					$state.go(//跳转到登录界面
-						"login",
-						{from: fromState.name,
-						fromParams: fromParams,
-						to: toState.name,
-						toParams: toParams});
+				if(APPCONFIG.IS_WEB){
+					if(!UTIL_URL.getParamsFromUrl("token")){
+						e.preventDefault();
+						$state.go("notlogin");
+					}
+				}else{
+					var isLogin = $rootScope.EXT.user.isLogin;
+					if(!isLogin){
+						e.preventDefault();
+						$state.go(//跳转到登录界面
+							"login",
+							{from: fromState.name,
+							fromParams: fromParams,
+							to: toState.name,
+							toParams: toParams});
+					}
 				}
+
 			}
 		}
 	});
@@ -210,11 +216,11 @@ app.constant('APPCONFIG', {
 
 	//服务端地址
 	// 本地
-	//SERVER_URL_PRE: "http://localhost:8100/api",
+	SERVER_URL_PRE: "http://localhost:8100/api",
 	// zz
 	//SERVER_URL_PRE: "http://192.168.1.252:9401/api-mobile/api",
 	// bj
-	SERVER_URL_PRE: "http://119.61.64.104:8777/api-mobile/api",
+	//SERVER_URL_PRE: "http://119.61.64.104:8777/api-mobile/api",
 
 	PAGE_SIZE: 10,
 	//本地数据库

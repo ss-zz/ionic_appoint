@@ -1,33 +1,33 @@
 <ion-view title="我的就医卡">
 
-    <ion-content padding="false" class="has-header">
+	<ion-content padding="false" class="has-header">
 
-        <ion-refresher
-            pulling-text="下拉刷新..."
-            on-refresh="refresh()">
-        </ion-refresher>
+		<ion-refresher
+			pulling-text="下拉刷新..."
+			on-refresh="refresh()">
+		</ion-refresher>
 	<ion-list >
-	    <ion-item ng-repeat="card in items" ng-click="go(card)" show-reorder="true" class="item-remove-animate">
-		    <h2>{{card.hosOrgName}}</h2>
-		    <p>就医卡号： {{card.cardno}}</p>
+		<ion-item ng-repeat="card in items" ng-click="go(card)" show-reorder="true" class="item-remove-animate">
+			<h2>{{card.hosOrgName}}</h2>
+			<p>就医卡号： {{card.cardno}}</p>
 			<ion-option-button class="button-assertive" ng-click="undindCard({{card.cardno}})">
-            	解绑
-          	</ion-option-button>
+				解绑
+			</ion-option-button>
 
-	  	</ion-item>
-    </ion-list>
-        <div class="nomore padding" ng-if="!hasmore">
-        		没有更多
-        </div>
-        <div class="addcard padding has-footer" >
-        	<button class="button button-balanced button-block" ng-click="addcard();">+ 添加就医卡</button>
-        </div>
+		</ion-item>
+	</ion-list>
+		<div class="nomore padding" ng-if="!hasmore">
+				没有更多
+		</div>
+		<div class="addcard padding has-footer" >
+			<button class="button button-balanced button-block" ng-click="addcard();">+ 添加就医卡</button>
+		</div>
 
-        <ion-infinite-scroll
-            ng-if="hasmore"
-            on-infinite="loadMore()"
-            distance="5%"
-            >
-        </ion-infinite-scroll>
-    </ion-content>
+		<ion-infinite-scroll
+			ng-if="hasmore"
+			on-infinite="loadMore()"
+			distance="5%"
+			>
+		</ion-infinite-scroll>
+	</ion-content>
 </ion-view>

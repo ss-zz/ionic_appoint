@@ -257,6 +257,11 @@ angular.module('app.routes', [])
 		templateUrl: 'user/views/login.html',
 		controller: 'LoginCtrl'
 	})
+	//未登录页
+	.state('notlogin', {
+		url: '/notlogin',
+		templateUrl: 'user/views/not_login.html'
+	})
 	//注册页
 	.state('signup', {
 		url: '/signup',

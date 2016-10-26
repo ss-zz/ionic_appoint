@@ -37,7 +37,25 @@ angular.module('app.commonservices', [])
 		}
 	};
 })
+//公共-url相关
+.factory('UTIL_URL', function(){
 
+	//接收页面传来的参数
+	var request ={
+		QueryString : function(val){
+			var uri = window.location.search;
+			var re = new RegExp(val+ "=([^&?]*)", "ig");
+			return ( (uri.match(re)) ?(uri.match(re)[0].substr(val.length+1)):null);
+		}
+	};
+
+	return {
+		// 从url中获取get参数
+		getParamsFromUrl: function(key){
+			return decodeURI(request.QueryString(key));
+		}
+	};
+})
 //公共-http
 .factory('UTIL_HTTP', function($http, $q, $state, UTIL_LOADING, UTIL_DIALOG, UTIL_USER, APPCONFIG ){
 
@@ -90,7 +108,11 @@ angular.module('app.commonservices', [])
 					}
 					deferred.reject("加载失败");
 				}else if(data.success === "403"){//未登陆
-					$state.go("login");
+					if(APPCONFIG.IS_WEB){
+						$state.go("notlogin");
+					}else{
+						$state.go("login");
+					}
 				}
 			}).error(function(data, header, config, status){
 				if(lastTimeout){
@@ -146,7 +168,7 @@ angular.module('app.commonservices', [])
 })
 
 //公共-用户状态
-.factory('UTIL_USER', function($q, SPEDATA, $ionicHistory){
+.factory('UTIL_USER', function($q, SPEDATA, $ionicHistory, UTIL_DIALOG){
 
 	var userInfoKey = "user_info";
 
@@ -203,6 +225,7 @@ angular.module('app.commonservices', [])
 		getToken: function(){
 			var deferred = $q.defer();
 			getUserInfo("token").then(function(token){
+				UTIL_DIALOG.show(token);
 				deferred.resolve(token);
 			});
 			return deferred.promise;

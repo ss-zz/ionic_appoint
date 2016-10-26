@@ -13,7 +13,12 @@ app.controller('MainMedicalrecordCtrl', function($scope, $stateParams, MedicalRe
 
 	//头像信息
 	UserService.getvatarByBase64().then(function(data){
-		$scope.imageBase64 = "data:image/jpeg;base64," + data;
+		if(!data) return;
+		if(data.indexOf("http://") !== -1){//网络地址图片
+			$scope.imageBase64 = data;
+		}else{// base64格式图片
+			$scope.imageBase64 = "data:image/jpeg;base64," + data;
+		}
 	});
 
 	//刷新页面

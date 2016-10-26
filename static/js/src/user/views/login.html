@@ -1,28 +1,28 @@
 <ion-view title="登录" hide-back-button="true">
 
-    <ion-nav-buttons side="left">
-      <div class="buttons">
-        <a class="button icon ion-android-home" ui-sref="index"></a>
-      </div>
-    </ion-nav-buttons>
+	<ion-nav-buttons side="left">
+	  <div class="buttons">
+		<a class="button icon ion-android-home" ui-sref="index"></a>
+	  </div>
+	</ion-nav-buttons>
 
-    <ion-content padding="true" class="has-header">
+	<ion-content padding="true" class="has-header">
 
-        <div class="list">
-            <label class="item item-input ">
-                <input ng-model="loginParams.username" type="text" placeholder="手机号">
-            </label>
-        </div>
-        <div class="list">
-            <label class="item item-input ">
-                <input ng-model="loginParams.password" type="password" placeholder="密码">
-            </label>
-        </div>
+		<div class="list">
+			<label class="item item-input ">
+				<input ng-model="loginParams.username" type="text" placeholder="手机号">
+			</label>
+		</div>
+		<div class="list">
+			<label class="item item-input ">
+				<input ng-model="loginParams.password" type="password" placeholder="密码">
+			</label>
+		</div>
 
-        <button class=" button button-balanced  button-block " ng-click="login();">登录</button>
-        <!--
-        <a href="#/signup" class=" button button-positive  button-block button-clear ">无账号? 点击注册</a>
-        -->
+		<button class=" button button-balanced  button-block " ng-click="login();">登录</button>
+		<!--
+		<a href="#/signup" class=" button button-positive  button-block button-clear ">无账号? 点击注册</a>
+		-->
 
-    </ion-content>
+	</ion-content>
 </ion-view>
