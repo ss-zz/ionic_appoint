@@ -1,5 +1,5 @@
 //首页
-app.controller('MainIndexCtrl', function($scope, $state, NewsService, UserService, UTIL_USER, $ionicPopup) {
+app.controller('MainIndexCtrl', function($scope, $state, NewsService, UserService, UTIL_USER, $ionicPopup, APPCONFIG) {
 
 	//跳转找医院
 	$scope.toSearch = function(){
@@ -34,6 +34,10 @@ app.controller('MainIndexCtrl', function($scope, $state, NewsService, UserServic
 	loadData();
 
 	$scope.viewLogin = function(){
+
+		//web发布，不能退出
+		if(APPCONFIG.IS_WEB) return;
+
 		UTIL_USER.isLogin().then(function(isLogin){
 			if(isLogin){
 				var confirmPopup = $ionicPopup.confirm({

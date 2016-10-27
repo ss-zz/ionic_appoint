@@ -225,7 +225,6 @@ angular.module('app.commonservices', [])
 		getToken: function(){
 			var deferred = $q.defer();
 			getUserInfo("token").then(function(token){
-				UTIL_DIALOG.show(token);
 				deferred.resolve(token);
 			});
 			return deferred.promise;
