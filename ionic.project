@@ -1,9 +1,8 @@
 {
-	"name": "ionic_test",
+	"name": "appoint",
 	"app_id": "",
 	"gulpStartupTasks": [
-		"minify",
-		"templatecache"
+		"build"
 	],
 	"proxies": [
 		{

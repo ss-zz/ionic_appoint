@@ -89,7 +89,7 @@ ionic 版本mobile(未完全升级)
 
 * 下载ionic项目源代码。
 * 参考【样例一】安装依赖包、添加环境部分。
-* 修改api服务端的访问地址。【static/js/src/app.js文件中SERVER_URL_PRE地址。注意：修改代理地址无效】
+* 修改api服务端的访问地址。【src/js/src/app.js文件中SERVER_URL_PRE地址。注意：修改代理地址无效】
 * 在项目根目录执行【gulp build】。
 * 在项目根目录执行【ionic build android】。（会在根目录下platforms目录中对应平台下生成apk安装包。）
 
@@ -97,7 +97,7 @@ ionic 版本mobile(未完全升级)
 
 * 下载ionic项目源代码。
 * 参考【样例一】安装依赖包、添加环境部分。
-* 修改api服务端的访问地址。【static/js/src/app.js文件中SERVER_URL_PRE地址。注意：修改代理地址无效】
+* 修改api服务端的访问地址。【src/js/src/app.js文件中SERVER_URL_PRE地址。注意：修改代理地址无效】
 * 在项目根目录执行【gulp pub】。
 * 直接将生成的pub目录下www.zip拷贝发布即可。
 

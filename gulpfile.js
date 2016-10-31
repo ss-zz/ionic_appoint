@@ -32,13 +32,13 @@ var zip = require('gulp-zip');
 var paths = {
 	build: 'www',
 	pub: 'pub',
-	src_js: ['static/js/src/**/*.js'],
-	src_css: ['static/css/**/*.css'],
-	src_img: ['static/img/**/*'],
-	src_pub: ['static/pub/**/*'],
-	src_font: ['static/lib/ionic/fonts/*.*'],
-	src_template: ['static/js/src/**/*.html'],
-	src_index_html: 'static/index.html',
+	src_js: ['src/js/src/**/*.js'],
+	src_css: ['src/css/**/*.css'],
+	src_img: ['src/img/**/*'],
+	src_pub: ['src/pub/**/*'],
+	src_font: ['src/lib/ionic/fonts/*.*'],
+	src_template: ['src/js/src/**/*.html'],
+	src_index_html: 'src/index.html',
 	www_temp: ['www/app.min.js', 'www/templates.js']
 };
 
